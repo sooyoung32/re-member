@@ -70,4 +70,18 @@ public class SubscriptionController {
 		);
 	}
 
+	@RequestMapping(
+			method = RequestMethod.GET,
+			value = "/v1/main/subscribed"
+	)
+	public List<SummarizedIssueModel> getMainSubscribedIssues(
+			@RequestHeader("AccessToken") String accessToken,
+			@ApiIgnore UserEntity userEntity
+	) {
+
+		return modelMapper.map(
+				subscriptionService.getMainSubscribedIssues(userEntity),
+				new TypeToken<List<SummarizedIssueModel>>(){}.getType()
+		);
+	}
 }
