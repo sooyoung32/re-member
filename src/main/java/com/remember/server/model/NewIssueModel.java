@@ -31,6 +31,7 @@ public class NewIssueModel {
 
     private Date createdAt;
 
+    @NotNull
     private String imageUrl;
 
 }

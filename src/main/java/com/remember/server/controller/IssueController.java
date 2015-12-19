@@ -1,15 +1,25 @@
 package com.remember.server.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.bson.types.ObjectId;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.remember.server.entity.IssueEntity;
 import com.remember.server.model.DetailIssueModel;
 import com.remember.server.model.NewIssueModel;
 import com.remember.server.service.IssueService;
-import org.bson.types.ObjectId;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 /**
  * Created by eunhwanpark on 15. 12. 19..
@@ -61,15 +71,22 @@ public class IssueController {
 
     @RequestMapping(
             method = RequestMethod.GET,
-            value = "/v1/recent/issue"
+            value = "/v1/recent/issues"
     )
     @ResponseBody
-    public NewIssueModel getRecentIssueArticles(
-            @Valid @RequestBody NewIssueModel newIssueModel,
-            @RequestHeader("AccessToken") String accessToken
-    ) {
-        return null;
+    public List<NewIssueModel> getRecentIssueArticles() {
+    	List<IssueEntity> issueEntities = issueService.getRecentIssueArticles();
+        return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
     }
-
+    
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/v1/update/issues"
+    )
+    @ResponseBody
+    public List<NewIssueModel> getUpdateIssueArticles() {
+    	List<IssueEntity> issueEntities = issueService.getUpdateIssueArticles();
+        return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
+    }
 
 }
