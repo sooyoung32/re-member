@@ -15,18 +15,20 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class IssueModel {
+public class NewIssueModel {
+
+    private String id;
 
     @NotNull
-    private String subject;
+    private String title;
 
     @NotNull
     private String content;
 
     private List<String> tags;
 
-    private Date createdAt;
+    private RecordModel records;
 
-    private String timeTreeId;
+    private Date createdAt;
 
 }

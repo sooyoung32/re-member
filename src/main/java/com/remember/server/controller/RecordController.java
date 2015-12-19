@@ -1,13 +1,9 @@
 package com.remember.server.controller;
 
 import com.remember.server.entity.IssueEntity;
-import com.remember.server.entity.RecordEntity;
 import com.remember.server.entity.UserEntity;
-import com.remember.server.exception.InvalidAccessTokenGenException;
 import com.remember.server.model.*;
-import com.remember.server.service.AccessTokenService;
 import com.remember.server.service.RecordService;
-import com.remember.server.util.crypto.SCRYPT;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +12,6 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.Date;
 
 /**
  * Created by NerdHerd on 2015. 12. 19..
@@ -36,7 +31,7 @@ public class RecordController {
 			value = "/v1/issue/{issueId}/record/manual"
 	)
 	@ResponseBody
-	public IssueModel postNewManualRecord(
+	public NewIssueModel postNewManualRecord(
 			@Valid @RequestBody NewManualRecordModel newManualRecordModel,
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore UserEntity userEntity,
@@ -49,7 +44,7 @@ public class RecordController {
 
 		return modelMapper.map(
 				issueEntity,
-				IssueModel.class
+				NewIssueModel.class
 		);
 
 	}
@@ -59,7 +54,7 @@ public class RecordController {
 			value = "/v1/issue/{issueId}/record/opengraph"
 	)
 	@ResponseBody
-	public IssueModel postNewOpenGraphRecord(
+	public NewIssueModel postNewOpenGraphRecord(
 			@Valid @RequestBody NewOpenGraphRecordModel newOpenGraphRecordModel,
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore UserEntity userEntity,
@@ -72,7 +67,7 @@ public class RecordController {
 
 		return modelMapper.map(
 				issueEntity,
-				IssueModel.class
+				NewIssueModel.class
 		);
 
 	}
@@ -82,7 +77,7 @@ public class RecordController {
 			value = "/v1/issue/{issueId}/record/youtube"
 	)
 	@ResponseBody
-	public IssueModel postNewYoutubeRecord(
+	public NewIssueModel postNewYoutubeRecord(
 			@Valid @RequestBody NewYoutubeRecordModel newYoutubeRecordModel,
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore UserEntity userEntity,
@@ -95,7 +90,7 @@ public class RecordController {
 
 		return modelMapper.map(
 				issueEntity,
-				IssueModel.class
+				NewIssueModel.class
 		);
 
 	}
