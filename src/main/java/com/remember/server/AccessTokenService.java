@@ -32,6 +32,9 @@ public class AccessTokenService {
 		private UserEntity userEntity;
 		private SessionModel sessionModel;
 
+		public AccessTokenModel() {
+		}
+
 		public AccessTokenModel(UserEntity userEntity, SessionModel sessionModel) {
 			this.userEntity = userEntity;
 			this.sessionModel = sessionModel;

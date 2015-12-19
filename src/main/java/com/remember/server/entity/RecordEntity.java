@@ -4,9 +4,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.*;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,15 +16,22 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Document
-public class TimelineEntity extends AbstractAuditable {
+public abstract class RecordEntity extends AbstractAuditable {
 
 	@Id
 	private ObjectId id;
 
+	private Date date;
+
+	private String title;
+
+	private String description;
+
+	private List<ReferenceEntity> references;
+
+	private String imageUrl;
+
 	@Version
 	private Long version;
-
-	@DBRef
-	private List<EventEntity> events;
 
 }

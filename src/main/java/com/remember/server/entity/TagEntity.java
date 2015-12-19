@@ -3,7 +3,7 @@ package com.remember.server.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.bson.types.ObjectId;
-import org.springframework.data.annotation.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
@@ -11,14 +11,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-@Document
-public class EventEntity extends AbstractAuditable {
+public class TagEntity {
 
 	@Id
 	private ObjectId id;
 
-	@Version
-	private Long version;
+	private String name;
 
 }

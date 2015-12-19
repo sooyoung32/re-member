@@ -107,7 +107,7 @@ public class UserController {
 	@ResponseBody
 	public void logout(
 			@RequestHeader("AccessToken") String accessToken,
-			@ApiIgnore HttpSession session
+			@ApiIgnore SessionModel sessionModel
 	) {
 
 		accessTokenService.expire(accessToken);
