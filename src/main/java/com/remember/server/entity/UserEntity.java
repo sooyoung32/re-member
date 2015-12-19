@@ -21,6 +21,8 @@ public class UserEntity {
 
 	private String email;
 
+	private String name;
+
 	private String encryptedPassword;
 
 	@Version

@@ -1,14 +1,24 @@
 package com.remember.server.controller;
 
+import com.remember.server.AccessTokenService;
+import com.remember.server.entity.UserEntity;
+import com.remember.server.exception.InvalidAccessTokenGenException;
+import com.remember.server.exception.InvalidCredentialException;
 import com.remember.server.model.JoinModel;
 import com.remember.server.model.LoginModel;
 import com.remember.server.model.SessionModel;
+import com.remember.server.model.UserModel;
+import com.remember.server.repository.UserRepository;
+import com.remember.server.util.crypto.SCRYPT;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.Date;
 
 /**
  * Created by NerdHerd on 2015. 12. 19..
@@ -17,6 +27,14 @@ import javax.validation.Valid;
 @RestController
 public class UserController {
 
+	@Autowired
+	private AccessTokenService accessTokenService;
+
+	@Autowired
+	private ModelMapper modelMapper;
+
+	@Autowired
+	private UserRepository userRepository;
 
 	@RequestMapping(
 			method = RequestMethod.POST,
@@ -27,9 +45,23 @@ public class UserController {
 			@Valid @RequestBody JoinModel joinModel,
 			@RequestHeader("User-Agent") String userAgent,
 			@ApiIgnore String ipAddress
-	) {
+	) throws InvalidAccessTokenGenException {
 
-		return null;
+		UserEntity newUserEntity = new UserEntity();
+		newUserEntity.setEmail(joinModel.getEmail());
+		newUserEntity.setEncryptedPassword(SCRYPT.encrypt(joinModel.getPassword()));
+		userRepository.save(newUserEntity);
+
+		SessionModel sessionModel = new SessionModel(
+				null,
+				new Date(),
+				modelMapper.map(newUserEntity, UserModel.class)
+		);
+
+		String accessToken = accessTokenService.createAccessToken(newUserEntity, sessionModel);
+		sessionModel.setAccessToken(accessToken);
+		return sessionModel;
+
 	}
 
 	@RequestMapping(
@@ -41,9 +73,31 @@ public class UserController {
 			@Valid @RequestBody LoginModel loginModel,
 			@RequestHeader("User-Agent") String userAgent,
 			@ApiIgnore String ipAddress
-	) {
+	) throws InvalidCredentialException, InvalidAccessTokenGenException {
 
-		return null;
+		UserEntity userEntity = userRepository.findOneByEmail(loginModel.getEmail());
+
+		if (userEntity == null)
+			throw new InvalidCredentialException();
+
+		boolean passwordValid = SCRYPT.check(
+				loginModel.getPassword(),
+				userEntity.getEncryptedPassword()
+		);
+
+		if (!passwordValid)
+			throw new InvalidCredentialException();
+
+		SessionModel sessionModel = new SessionModel(
+				null,
+				new Date(),
+				modelMapper.map(userEntity, UserModel.class)
+		);
+
+		String accessToken = accessTokenService.createAccessToken(userEntity, sessionModel);
+		sessionModel.setAccessToken(accessToken);
+		return sessionModel;
+
 	}
 
 	@RequestMapping(
@@ -55,7 +109,9 @@ public class UserController {
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore HttpSession session
 	) {
-		
+
+		accessTokenService.expire(accessToken);
+
 	}
 
 }
