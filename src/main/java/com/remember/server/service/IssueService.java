@@ -82,4 +82,10 @@ public class IssueService {
 		return issues;
 	
 	}
+
+    public List<IssueEntity> searchIssues(int page, String title) {
+        List<IssueEntity> issues = issueRepository.findByTitleContaining(title, new PageRequest(page, 10));
+        return issues;
+    }
+
 }

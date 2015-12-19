@@ -147,4 +147,20 @@ public class IssueController {
 		);
 	}
 
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/v1/search/issues"
+    )
+    @ResponseBody
+    public List<SummarizedIssueModel> getSearchResults(
+            @RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId,
+            @RequestParam(value = "title", required = true) String title
+    ) {
+        List<IssueEntity> issueEntities = issueService.searchIssues(pageId, title);
+        return modelMapper.map(
+                issueEntities,
+                new TypeToken<List<SummarizedIssueModel>>(){}.getType()
+        );
+    }
+
 }
