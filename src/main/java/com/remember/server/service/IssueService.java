@@ -88,4 +88,9 @@ public class IssueService {
         return issues;
     }
 
+	public List<IssueEntity> getAllIssuesByRecords(int pageId) {
+		List<IssueEntity> issues = issueRepository.findAll(new PageRequest(pageId, 10, new Sort(Sort.Direction.ASC, "recordSize"))).getContent();
+		return issues;
+	}
+
 }

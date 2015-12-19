@@ -116,19 +116,19 @@ public class IssueController {
     }
     
     
-//    @RequestMapping(
-//            method = RequestMethod.GET,
-//            value = "/v1/all/issues/records"
-//    )
-//    @ResponseBody
-//	public List<SummarizedIssueModel> getAllIssuesByRecords(
-//    		@RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId ) {
-//    	 List<IssueEntity> issueEntities = issueService.getAllIssuesByRecords(pageId);
-//    	  return modelMapper.map(
-//  		        issueEntities,
-//  		        new TypeToken<List<SummarizedIssueModel>>(){}.getType()
-//          );
-//	}
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/v1/all/issues/records"
+    )
+    @ResponseBody
+	public List<SummarizedIssueModel> getAllIssuesByRecords(
+    		@RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId ) {
+    	 List<IssueEntity> issueEntities = issueService.getAllIssuesByRecords(pageId);
+    	  return modelMapper.map(
+  		        issueEntities,
+  		        new TypeToken<List<SummarizedIssueModel>>(){}.getType()
+          );
+	}
     
     
 
