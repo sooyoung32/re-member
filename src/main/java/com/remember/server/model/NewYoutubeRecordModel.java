@@ -9,24 +9,21 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by eunhwanpark on 15. 12. 19..
+ * Created by NerdHerd on 2015. 12. 19..
  */
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class IssueModel {
+public class NewYoutubeRecordModel {
 
-    @NotNull
-    private String subject;
+	@NotNull
+	private Date date;
 
-    @NotNull
-    private String content;
+	@NotNull
+	private String youtubeUrl;
 
-    private List<String> tags;
-
-    private Date createdAt;
-
-    private String timeTreeId;
+	@NotNull
+	private List<NewReferenceModel> references;
 
 }

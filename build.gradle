@@ -61,7 +61,12 @@ dependencies {
     compile('io.springfox:springfox-swagger-ui:2.3.0')
 
     compile('org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE')
+    compile('me.shakiba.og4j:og4j:0.0.1')
+    compile('org.jsoup:jsoup:1.8.3')
 
+    compile 'org.webjars:jquery:2.1.4'
+
+    compile 'org.webjars:bootstrap:3.3.6'
 }
 
 
