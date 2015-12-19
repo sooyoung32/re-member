@@ -5,8 +5,11 @@ import com.remember.server.model.NewIssueModel;
 import com.remember.server.repository.IssueRepository;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created by eunhwanpark on 15. 12. 19..
@@ -39,6 +42,15 @@ public class IssueService {
         return modelMapper.map(
                 issueEntity,
                 IssueEntity.class
+        );
+    }
+
+    public List<IssueEntity> getRecentIssueArticles() {
+        List<IssueEntity> issues = issueRepository.findTop3rderByCreatedAt();
+
+        return modelMapper.map(
+                issues,
+                new TypeToken<List<NewIssueModel>>(){}.getType()
         );
     }
 
