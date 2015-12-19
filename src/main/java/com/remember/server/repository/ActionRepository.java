@@ -1,7 +1,6 @@
 package com.remember.server.repository;
 
 import com.remember.server.entity.ActionEntity;
-import com.remember.server.entity.UserEntity;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;

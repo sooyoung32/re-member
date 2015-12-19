@@ -23,7 +23,7 @@ public class UserEntity {
 	@Id
 	private ObjectId id;
 
-//	@Indexed(unique = true)
+	@Indexed(unique = true)
 	private String email;
 
 	private String name;

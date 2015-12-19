@@ -1,6 +1,5 @@
 package com.remember.server.repository;
 
-import com.remember.server.entity.IssueEntity;
 import com.remember.server.entity.RecordEntity;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
