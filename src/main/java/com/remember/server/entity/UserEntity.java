@@ -1,5 +1,7 @@
 package com.remember.server.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.bson.types.ObjectId;
@@ -21,6 +23,7 @@ import java.util.List;
 public class UserEntity {
 
 	@Id
+	@JsonSerialize(using = ToStringSerializer.class)
 	private ObjectId id;
 
 	@Indexed(unique = true)

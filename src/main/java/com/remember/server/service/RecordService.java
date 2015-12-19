@@ -21,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,7 +53,7 @@ public class RecordService {
 		List<RecordEntity> records = issueEntity.getRecords() == null ? new ArrayList<>() : issueEntity.getRecords();
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
-
+		issueEntity.setModifiedAt(new Date());
 		issueRepository.save(issueEntity);
 
 		return issueEntity;
@@ -85,7 +86,7 @@ public class RecordService {
 		List<RecordEntity> records = issueEntity.getRecords() == null ? new ArrayList<>() : issueEntity.getRecords();
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
-
+		issueEntity.setModifiedAt(new Date());
 		issueRepository.save(issueEntity);
 
 		return issueEntity;
@@ -119,7 +120,7 @@ public class RecordService {
 		List<RecordEntity> records = issueEntity.getRecords() == null ? new ArrayList<>() : issueEntity.getRecords();
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
-
+		issueEntity.setModifiedAt(new Date());
 		issueRepository.save(issueEntity);
 
 		return issueEntity;
