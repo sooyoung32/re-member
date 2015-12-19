@@ -1,7 +1,6 @@
 package com.remember.server.config.mvc;
 
 import com.remember.server.AccessTokenService;
-import com.remember.server.entity.UserEntity;
 import com.remember.server.model.SessionModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

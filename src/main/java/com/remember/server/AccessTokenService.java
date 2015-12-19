@@ -1,6 +1,5 @@
 package com.remember.server;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.remember.server.entity.UserEntity;
 import com.remember.server.exception.InvalidAccessTokenGenException;
@@ -8,13 +7,6 @@ import com.remember.server.model.SessionModel;
 import com.remember.server.util.crypto.AES128;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-import javax.servlet.http.HttpServletRequest;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by NerdHerd on 2015. 12. 19..
