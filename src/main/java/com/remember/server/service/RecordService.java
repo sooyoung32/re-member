@@ -54,6 +54,7 @@ public class RecordService {
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
 		issueEntity.setModifiedAt(new Date());
+		issueEntity.setRecordSize(issueEntity.getRecordSize() + 1);
 		issueRepository.save(issueEntity);
 
 		return issueEntity;
@@ -87,6 +88,7 @@ public class RecordService {
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
 		issueEntity.setModifiedAt(new Date());
+		issueEntity.setRecordSize(issueEntity.getRecordSize() + 1);
 		issueRepository.save(issueEntity);
 
 		return issueEntity;
@@ -121,6 +123,7 @@ public class RecordService {
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
 		issueEntity.setModifiedAt(new Date());
+		issueEntity.setRecordSize(issueEntity.getRecordSize() + 1);
 		issueRepository.save(issueEntity);
 
 		return issueEntity;

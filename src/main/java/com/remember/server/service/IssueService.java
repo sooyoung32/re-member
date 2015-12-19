@@ -40,6 +40,7 @@ public class IssueService {
                 newIssueModel,
                 IssueEntity.class
         );
+	    issueEntity.setRecordSize(1);
 	    issueEntity.setCreator(userEntity);
 
         issueRepository.save(issueEntity);
