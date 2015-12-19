@@ -67,4 +67,9 @@ public class IssueService {
 		List<IssueEntity> issues = issueRepository.findAll(new PageRequest(page, 10, new Sort(Sort.Direction.DESC, "modifiedAt"))).getContent();
 		return issues;
 	}
+
+	public List<IssueEntity> getAllIssuesBySubscribeCount(int page) {
+		List<IssueEntity> issues = issueRepository.findAll(new PageRequest(page, 10, new Sort(Sort.Direction.DESC, "subscribeCount"))).getContent();
+		return issues;
+	}
 }

@@ -23,6 +23,8 @@ public class SummarizedIssueModel {
 
     private long shareCount;
 
+	private long subscribeCount;
+
     private String imageUrl;
 
 	private Date createdAt;

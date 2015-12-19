@@ -112,4 +112,19 @@ public class IssueController {
         );
     }
 
+	@RequestMapping(
+			method = RequestMethod.GET,
+			value = "/v1/all/issues/subscription"
+	)
+	@ResponseBody
+	public List<SummarizedIssueModel> getAllIssuesBySubscription(
+			@RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId
+	) {
+		List<IssueEntity> issueEntities = issueService.getAllIssuesBySubscribeCount(pageId);
+		return modelMapper.map(
+				issueEntities,
+				new TypeToken<List<SummarizedIssueModel>>(){}.getType()
+		);
+	}
+
 }

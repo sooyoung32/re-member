@@ -56,6 +56,9 @@ public class SubscriptionService {
 		userEntity.setSubscribedIssues(subscribedIssues);
 
 		userRepository.save(userEntity);
+
+		issueEntity.setSubscribeCount(issueEntity.getSubscribeCount() + 1);
+		issueRepository.save(issueEntity);
 	}
 
 	public void unsubscribe(ObjectId issueOid, UserEntity userEntity) {
@@ -68,6 +71,8 @@ public class SubscriptionService {
 		userEntity.setSubscribedIssues(filteredIssues);
 		userRepository.save(userEntity);
 
+		issueEntity.setSubscribeCount(issueEntity.getSubscribeCount() - 1);
+		issueRepository.save(issueEntity);
 	}
 
 	public List<IssueEntity> getAllSubscribedIssues(UserEntity userEntity) {

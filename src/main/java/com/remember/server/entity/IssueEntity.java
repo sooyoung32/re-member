@@ -34,6 +34,8 @@ public class IssueEntity extends AbstractAuditable {
 
 	private long shareCount;
 
+	private long subscribeCount;
+
 	@DBRef
 	private List<RecordEntity> records;
 
