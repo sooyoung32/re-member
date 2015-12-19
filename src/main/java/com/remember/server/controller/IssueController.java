@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.remember.server.model.SummarizedIssueModel;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -74,9 +75,9 @@ public class IssueController {
             value = "/v1/recent/issues"
     )
     @ResponseBody
-    public List<NewIssueModel> getRecentIssueArticles() {
+    public List<SummarizedIssueModel> getRecentIssueArticles() {
     	List<IssueEntity> issueEntities = issueService.getRecentIssueArticles();
-        return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
+        return modelMapper.map(issueEntities, new TypeToken<List<SummarizedIssueModel>>(){}.getType());
     }
     
     @RequestMapping(
@@ -84,9 +85,9 @@ public class IssueController {
             value = "/v1/update/issues"
     )
     @ResponseBody
-    public List<NewIssueModel> getUpdateIssueArticles() {
+    public List<SummarizedIssueModel> getUpdateIssueArticles() {
     	List<IssueEntity> issueEntities = issueService.getUpdateIssueArticles();
-        return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
+        return modelMapper.map(issueEntities, new TypeToken<List<SummarizedIssueModel>>(){}.getType());
     }
 
 }
