@@ -1,8 +1,14 @@
 package com.remember.server.model;
 
+import com.remember.server.entity.ActionEntity;
+import com.remember.server.entity.RecordEntity;
+import com.remember.server.entity.TagEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -24,10 +30,12 @@ public class DetailIssueModel {
 
     private List<String> tags;
 
-    private RecordModel records;
+    private long shareCount;
 
-    private Date createdAt;
+    private List<RecordModel> records;
 
-    private Date modifiedAt;
+    private List<ActionModel> actions;
+
+    private String imageUrl;
 
 }

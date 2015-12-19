@@ -2,6 +2,7 @@ package com.remember.server.controller;
 
 import com.remember.server.entity.UserEntity;
 import com.remember.server.model.NewYoutubeRecordModel;
+import com.remember.server.model.SummarizedIssueModel;
 import com.remember.server.service.SubscriptionService;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by NerdHerd on 2015. 12. 20..
@@ -50,6 +52,17 @@ public class SubscriptionController {
 		ObjectId issueOid = new ObjectId(issueId);
 
 		subscriptionService.unsubscribe(issueOid, userEntity);
+	}
+
+	@RequestMapping(
+			method = RequestMethod.GET,
+			value = "/v1/me/subscribed"
+	)
+	public List<SummarizedIssueModel> getAllSubscribedIssues(
+			@RequestHeader("AccessToken") String accessToken,
+			@ApiIgnore UserEntity userEntity
+	) {
+		return null;
 	}
 
 }
