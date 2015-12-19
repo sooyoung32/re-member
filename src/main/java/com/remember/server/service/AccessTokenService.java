@@ -1,4 +1,4 @@
-package com.remember.server;
+package com.remember.server.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.remember.server.entity.UserEntity;

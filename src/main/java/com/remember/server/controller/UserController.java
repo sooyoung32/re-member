@@ -1,6 +1,6 @@
 package com.remember.server.controller;
 
-import com.remember.server.AccessTokenService;
+import com.remember.server.service.AccessTokenService;
 import com.remember.server.entity.UserEntity;
 import com.remember.server.exception.InvalidAccessTokenGenException;
 import com.remember.server.exception.InvalidCredentialException;
