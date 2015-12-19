@@ -1,7 +1,9 @@
 package com.remember.server.repository;
 
 import com.remember.server.entity.IssueEntity;
+
 import org.bson.types.ObjectId;
+import org.springframework.data.domain.Page;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -16,5 +18,4 @@ public interface IssueRepository extends MongoRepository<IssueEntity, ObjectId> 
 
     List<IssueEntity> findTop3ByOrderByCreatedAtDesc();
     List<IssueEntity> findTop3ByOrderByModifiedAtDesc();
-
 }

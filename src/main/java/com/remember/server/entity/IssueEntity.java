@@ -38,11 +38,15 @@ public class IssueEntity extends AbstractAuditable {
 
 	@DBRef
 	private List<RecordEntity> records;
+	
+	private int recordSize;
 
 	@DBRef
 	private List<ActionEntity> actions;
 
 	private String imageUrl;
+	
+
 
 	@Version
 	private Long version;
