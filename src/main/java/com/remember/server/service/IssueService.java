@@ -1,6 +1,7 @@
 package com.remember.server.service;
 
 import com.remember.server.entity.IssueEntity;
+import com.remember.server.entity.UserEntity;
 import com.remember.server.model.NewIssueModel;
 import com.remember.server.repository.IssueRepository;
 import org.bson.types.ObjectId;
@@ -27,14 +28,22 @@ public class IssueService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public IssueEntity createNewIssueArticle(NewIssueModel newIssueModel) {
+	@Autowired
+	private RecordService recordService;
+
+    public IssueEntity createNewIssueArticle(NewIssueModel newIssueModel, UserEntity userEntity) {
+
 
         IssueEntity issueEntity = modelMapper.map(
                 newIssueModel,
                 IssueEntity.class
         );
+	    issueEntity.setRecordSize(1);
+	    issueEntity.setCreator(userEntity);
 
         issueRepository.save(issueEntity);
+
+	    recordService.createNewRecord(issueEntity.getId(), newIssueModel.getRecords(), userEntity);
 
         return issueEntity;
     }
@@ -74,8 +83,9 @@ public class IssueService {
 	
 	}
 
-	public List<IssueEntity> getAllIssuesByRecords(int pageId) {
-		List<IssueEntity> issues = issueRepository.findAll(new PageRequest(pageId, 10, new Sort(Sort.Direction.DESC, "recordSize"))).getContent();
-		return issues;
-	}
+    public List<IssueEntity> searchIssues(int page, String title) {
+        List<IssueEntity> issues = issueRepository.findByTitleContaining(title, new PageRequest(page, 10));
+        return issues;
+    }
+
 }
