@@ -9,13 +9,7 @@ import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.remember.server.entity.IssueEntity;
 import com.remember.server.model.DetailIssueModel;
@@ -88,6 +82,19 @@ public class IssueController {
     public List<SummarizedIssueModel> getUpdateIssueArticles() {
     	List<IssueEntity> issueEntities = issueService.getUpdateIssueArticles();
         return modelMapper.map(issueEntities, new TypeToken<List<SummarizedIssueModel>>(){}.getType());
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/v1/{pageId}/issues"
+    )
+    @ResponseBody
+    public NewIssueModel getIssue10Articles(
+            @RequestHeader("AccessToken") String accessToken,
+            @RequestParam(value = "pageId", required = false, defaultValue = "1") int pageId
+    ) {
+        List<IssueEntity> issueEntities = issueService.getIssuePaginableArticles(pageId).getContent();
+        return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
     }
 
 }
