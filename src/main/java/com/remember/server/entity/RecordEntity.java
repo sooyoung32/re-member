@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Document
-public abstract class RecordEntity extends AbstractAuditable {
+public class RecordEntity extends AbstractAuditable {
 
 	@Id
 	private ObjectId id;
@@ -31,6 +31,10 @@ public abstract class RecordEntity extends AbstractAuditable {
 	private List<ReferenceEntity> references;
 
 	private String imageUrl;
+
+	private String openGraphUrl;
+
+	private String youtubeUrl;
 
 	@Version
 	private Long version;

@@ -67,7 +67,7 @@ public class RememberServerApplication {
 
 		UserEntity creator = userRepository.findOneByEmail("madelene.callender@mailpost.zzn.com");
 
-		RecordEntity recordEntity = new ManualRecordEntity();
+		RecordEntity recordEntity = new RecordEntity();
 		recordEntity.setTitle("서해대교 2중추돌사고");
 		recordEntity.setDescription("서해대교에서 승용차가 승합차를 추돌, 2중추돌사고가 발생하였다.");
 		recordEntity.setDate(new Date());
