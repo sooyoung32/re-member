@@ -62,6 +62,9 @@ dependencies {
 
     compile('org.thymeleaf.extras:thymeleaf-extras-java8time:2.1.0.RELEASE')
 
+    compile 'org.webjars:jquery:2.1.4'
+
+    compile 'org.webjars:bootstrap:3.3.6'
 }
 
 
