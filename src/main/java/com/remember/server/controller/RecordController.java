@@ -45,13 +45,12 @@ public class RecordController {
 
 		ObjectId issueOid = new ObjectId(issueId);
 
-		IssueEntity issueEntity = recordService.createNewRecord(issueOid, newManualRecordModel);
+		IssueEntity issueEntity = recordService.createNewRecord(issueOid, newManualRecordModel, userEntity);
 
 		return modelMapper.map(
 				issueEntity,
 				IssueModel.class
 		);
-
 
 	}
 
@@ -69,13 +68,35 @@ public class RecordController {
 
 		ObjectId issueOid = new ObjectId(issueId);
 
-		IssueEntity issueEntity = recordService.createNewRecord(issueOid, newOpenGraphRecordModel);
+		IssueEntity issueEntity = recordService.createNewRecord(issueOid, newOpenGraphRecordModel, userEntity);
 
 		return modelMapper.map(
 				issueEntity,
 				IssueModel.class
 		);
 
+	}
+
+	@RequestMapping(
+			method = RequestMethod.POST,
+			value = "/v1/issue/{issueId}/record/youtube"
+	)
+	@ResponseBody
+	public IssueModel postNewYoutubeRecord(
+			@Valid @RequestBody NewYoutubeRecordModel newYoutubeRecordModel,
+			@RequestHeader("AccessToken") String accessToken,
+			@ApiIgnore UserEntity userEntity,
+			@PathVariable("issueId") String issueId
+	) throws IOException {
+
+		ObjectId issueOid = new ObjectId(issueId);
+
+		IssueEntity issueEntity = recordService.createNewRecord(issueOid, newYoutubeRecordModel, userEntity);
+
+		return modelMapper.map(
+				issueEntity,
+				IssueModel.class
+		);
 
 	}
 
