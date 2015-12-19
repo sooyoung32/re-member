@@ -6,6 +6,7 @@ import com.remember.server.entity.TagEntity;
 import com.remember.server.model.IssueModel;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
+import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Configuration;
@@ -43,5 +44,11 @@ public class IssueEntityToIssueModelPropertyMap extends PropertyMapConfigurerSup
 				skip().setTimeTreeId(null);
 			}
 		};
+	}
+
+	@Override
+	public void configure(ModelMapper modelMapper) {
+		super.configure(modelMapper);
+		modelMapper.validate();
 	}
 }
