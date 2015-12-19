@@ -57,4 +57,8 @@ public class SubscriptionService {
 
 	}
 
+	public List<IssueEntity> getAllSubscribedIssues(UserEntity userEntity) {
+		userEntity = userRepository.findOne(userEntity.getId());
+		return userEntity.getSubscribedIssues();
+	}
 }

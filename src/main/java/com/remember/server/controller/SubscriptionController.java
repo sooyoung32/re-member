@@ -6,6 +6,7 @@ import com.remember.server.model.SummarizedIssueModel;
 import com.remember.server.service.SubscriptionService;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
@@ -62,7 +63,11 @@ public class SubscriptionController {
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore UserEntity userEntity
 	) {
-		return null;
+
+		return modelMapper.map(
+				subscriptionService.getAllSubscribedIssues(userEntity),
+				new TypeToken<List<SummarizedIssueModel>>(){}.getType()
+		);
 	}
 
 }
