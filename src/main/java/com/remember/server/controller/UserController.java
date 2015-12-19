@@ -29,7 +29,6 @@ public class UserController {
 			@ApiIgnore String ipAddress
 	) {
 
-		System.out.println("FUCK");
 		return null;
 	}
 
@@ -44,7 +43,6 @@ public class UserController {
 			@ApiIgnore String ipAddress
 	) {
 
-		System.out.println("FUCK");
 		return null;
 	}
 
@@ -57,8 +55,7 @@ public class UserController {
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore HttpSession session
 	) {
-
-		System.out.println("FUCK");
+		
 	}
 
 }
