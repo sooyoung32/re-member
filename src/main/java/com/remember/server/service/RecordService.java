@@ -42,9 +42,9 @@ public class RecordService {
 
 	public IssueEntity createNewRecord(ObjectId issueOid, NewManualRecordModel recordModel, UserEntity userEntity) {
 
-		ManualRecordEntity recordEntity = modelMapper.map(
+		RecordEntity recordEntity = modelMapper.map(
 				recordModel,
-				ManualRecordEntity.class
+				RecordEntity.class
 		);
 		recordEntity.setCreator(userEntity);
 		recordRepository.save(recordEntity);
@@ -54,6 +54,7 @@ public class RecordService {
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
 		issueEntity.setModifiedAt(new Date());
+		issueEntity.setRecordSize(issueEntity.getRecordSize() + 1);
 		issueRepository.save(issueEntity);
 
 		return issueEntity;
@@ -61,9 +62,9 @@ public class RecordService {
 
 	public IssueEntity createNewRecord(ObjectId issueOid, NewOpenGraphRecordModel recordModel, UserEntity userEntity) throws IOException {
 
-		OpenGraphRecordEntity recordEntity = modelMapper.map(
+		RecordEntity recordEntity = modelMapper.map(
 				recordModel,
-				OpenGraphRecordEntity.class
+				RecordEntity.class
 		);
 
 		Document doc = Jsoup.parse(new URL(recordModel.getOpenGraphUrl()), 1000);
@@ -80,6 +81,7 @@ public class RecordService {
 		recordEntity.setDescription(og.description());
 		recordEntity.setImageUrl(og.imageUrl().equals("") ? og.image() : og.imageUrl());
 		recordEntity.setCreator(userEntity);
+		recordEntity.setOpenGraphUrl(recordModel.getOpenGraphUrl());
 		recordRepository.save(recordEntity);
 
 		IssueEntity issueEntity = issueRepository.findOne(issueOid);
@@ -87,6 +89,7 @@ public class RecordService {
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
 		issueEntity.setModifiedAt(new Date());
+		issueEntity.setRecordSize(issueEntity.getRecordSize() + 1);
 		issueRepository.save(issueEntity);
 
 		return issueEntity;
@@ -95,9 +98,9 @@ public class RecordService {
 
 	public IssueEntity createNewRecord(ObjectId issueOid, NewYoutubeRecordModel recordModel, UserEntity userEntity) throws IOException {
 
-		YoutubeRecordEntity recordEntity = modelMapper.map(
+		RecordEntity recordEntity = modelMapper.map(
 				recordModel,
-				YoutubeRecordEntity.class
+				RecordEntity.class
 		);
 
 		Document doc = Jsoup.parse(new URL(recordModel.getYoutubeUrl()), 1000);
@@ -114,6 +117,7 @@ public class RecordService {
 		recordEntity.setDescription(og.description());
 		recordEntity.setImageUrl(og.imageUrl().equals("") ? og.image() : og.imageUrl());
 		recordEntity.setCreator(userEntity);
+		recordEntity.setYoutubeUrl(recordModel.getYoutubeUrl());
 		recordRepository.save(recordEntity);
 
 		IssueEntity issueEntity = issueRepository.findOne(issueOid);
@@ -121,6 +125,7 @@ public class RecordService {
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
 		issueEntity.setModifiedAt(new Date());
+		issueEntity.setRecordSize(issueEntity.getRecordSize() + 1);
 		issueRepository.save(issueEntity);
 
 		return issueEntity;

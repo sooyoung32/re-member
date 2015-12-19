@@ -43,7 +43,7 @@ public class IssueService {
 
         issueRepository.save(issueEntity);
 
-	    recordService.createNewRecord(issueEntity.getId(), newIssueModel.getRecords(), userEntity);
+	    recordService.createNewRecord(issueEntity.getId(), newIssueModel.getRecord(), userEntity);
 
         return issueEntity;
     }
