@@ -7,6 +7,8 @@ import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,6 +56,10 @@ public class IssueService {
         List<IssueEntity> issues = issueRepository.findTop3ByOrderByModifiedAtDesc();
         return issues;
     }
-    
+
+    public Page<IssueEntity> getIssuePaginableArticles(int pageId) {
+        Page<IssueEntity> issues = issueRepository.findAll(new PageRequest(pageId, pageId * 10));
+        return issues;
+    }
 
 }
