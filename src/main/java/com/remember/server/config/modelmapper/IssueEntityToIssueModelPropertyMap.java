@@ -3,17 +3,15 @@ package com.remember.server.config.modelmapper;
 import com.github.jmnarloch.spring.boot.modelmapper.PropertyMapConfigurerSupport;
 import com.remember.server.entity.IssueEntity;
 import com.remember.server.entity.TagEntity;
-import com.remember.server.model.IssueModel;
+import com.remember.server.model.NewIssueModel;
 import org.modelmapper.AbstractConverter;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
-import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -21,7 +19,7 @@ import java.util.stream.Collectors;
  */
 
 @Configuration
-public class IssueEntityToIssueModelPropertyMap extends PropertyMapConfigurerSupport<IssueEntity, IssueModel> {
+public class IssueEntityToIssueModelPropertyMap extends PropertyMapConfigurerSupport<IssueEntity, NewIssueModel> {
 
 	private Converter<List<TagEntity>, List<String>> tagEntitiesConverter = new AbstractConverter<List<TagEntity>, List<String>>() {
 		@Override
@@ -33,15 +31,14 @@ public class IssueEntityToIssueModelPropertyMap extends PropertyMapConfigurerSup
 	};
 
 	@Override
-	public PropertyMap<IssueEntity, IssueModel> mapping() {
-		return new PropertyMap<IssueEntity, IssueModel>() {
+	public PropertyMap<IssueEntity, NewIssueModel> mapping() {
+		return new PropertyMap<IssueEntity, NewIssueModel>() {
 			@Override
 			protected void configure() {
 				map().setContent(source.getContent());
 				map().setCreatedAt(source.getCreatedAt());
-				map().setSubject(source.getTitle());
+				map().setTitle(source.getTitle());
 				using(tagEntitiesConverter).map(source.getTags()).setTags(null);
-				skip().setTimeTreeId(null);
 			}
 		};
 	}

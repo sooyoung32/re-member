@@ -1,7 +1,7 @@
 package com.remember.server.service;
 
 import com.remember.server.entity.IssueEntity;
-import com.remember.server.model.IssueModel;
+import com.remember.server.model.NewIssueModel;
 import com.remember.server.repository.IssueRepository;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
@@ -21,10 +21,10 @@ public class IssueService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public IssueEntity createNewIssueArticle(IssueModel issueModel) {
+    public IssueEntity createNewIssueArticle(NewIssueModel newIssueModel) {
 
         IssueEntity issueEntity = modelMapper.map(
-                issueModel,
+                newIssueModel,
                 IssueEntity.class
         );
 
