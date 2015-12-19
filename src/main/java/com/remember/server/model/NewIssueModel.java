@@ -27,7 +27,7 @@ public class NewIssueModel {
 
     private List<String> tags;
 
-    private RecordModel records;
+    private NewManualRecordModel record;
 
     private Date createdAt;
 
