@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class EventModel {
+public class IssueModel {
 
     private String subject;
     private String content;

@@ -19,4 +19,5 @@ public class SessionModel {
 	private Date createdAt;
 	private UserModel me;
 
+
 }
