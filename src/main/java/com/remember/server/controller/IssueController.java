@@ -79,14 +79,14 @@ public class IssueController {
         return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
     }
     
-//    @RequestMapping(
-//            method = RequestMethod.GET,
-//            value = "/v1/update/issues"
-//    )
-//    @ResponseBody
-//    public List<NewIssueModel> getUpdateIssueArticles() {
-//    	List<IssueEntity> issueEntities = issueService.getUpdateIssueArticles();
-//        return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
-//    }
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/v1/update/issues"
+    )
+    @ResponseBody
+    public List<NewIssueModel> getUpdateIssueArticles() {
+    	List<IssueEntity> issueEntities = issueService.getUpdateIssueArticles();
+        return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
+    }
 
 }

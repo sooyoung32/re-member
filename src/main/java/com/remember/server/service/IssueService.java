@@ -49,5 +49,11 @@ public class IssueService {
         List<IssueEntity> issues = issueRepository.findTop3ByOrderByCreatedAtDesc();
         return issues;
     }
+    
+    public List<IssueEntity> getUpdateIssueArticles() {
+        List<IssueEntity> issues = issueRepository.findTop3ByOrderByModifiedAtDesc();
+        return issues;
+    }
+    
 
 }
