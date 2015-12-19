@@ -23,6 +23,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
 		argumentResolvers.add(context.getBean(IpAddressArgumentResolver.class));
 		argumentResolvers.add(context.getBean(UserEntityArgumentResolver.class));
+		argumentResolvers.add(context.getBean(SessionModelArgumentResolver.class));
 	}
 
 
