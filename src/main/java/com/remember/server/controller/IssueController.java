@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import com.remember.server.entity.UserEntity;
 import com.remember.server.model.SummarizedIssueModel;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
@@ -15,6 +16,7 @@ import com.remember.server.entity.IssueEntity;
 import com.remember.server.model.DetailIssueModel;
 import com.remember.server.model.NewIssueModel;
 import com.remember.server.service.IssueService;
+import springfox.documentation.annotations.ApiIgnore;
 
 /**
  * Created by eunhwanpark on 15. 12. 19..
@@ -35,9 +37,10 @@ public class IssueController {
     @ResponseBody
     public NewIssueModel uploadIssueArticle(
             @Valid @RequestBody NewIssueModel newIssueModel,
-            @RequestHeader("AccessToken") String accessToken
+            @RequestHeader("AccessToken") String accessToken,
+            @ApiIgnore UserEntity userEntity
     ) {
-        IssueEntity issueEntity = issueService.createNewIssueArticle(newIssueModel);
+        IssueEntity issueEntity = issueService.createNewIssueArticle(newIssueModel, userEntity);
 
         return modelMapper.map(
                 issueEntity,
@@ -113,19 +116,19 @@ public class IssueController {
     }
     
     
-    @RequestMapping(
-            method = RequestMethod.GET,
-            value = "/v1/all/issues/records"
-    )
-    @ResponseBody
-	public List<SummarizedIssueModel> getAllIssuesByRecords(
-    		@RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId ) {
-    	 List<IssueEntity> issueEntities = issueService.getAllIssuesByRecords(pageId);
-    	  return modelMapper.map(
-  		        issueEntities,
-  		        new TypeToken<List<SummarizedIssueModel>>(){}.getType()
-          );
-	}
+//    @RequestMapping(
+//            method = RequestMethod.GET,
+//            value = "/v1/all/issues/records"
+//    )
+//    @ResponseBody
+//	public List<SummarizedIssueModel> getAllIssuesByRecords(
+//    		@RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId ) {
+//    	 List<IssueEntity> issueEntities = issueService.getAllIssuesByRecords(pageId);
+//    	  return modelMapper.map(
+//  		        issueEntities,
+//  		        new TypeToken<List<SummarizedIssueModel>>(){}.getType()
+//          );
+//	}
     
     
 
@@ -143,5 +146,21 @@ public class IssueController {
 				new TypeToken<List<SummarizedIssueModel>>(){}.getType()
 		);
 	}
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/v1/search/issues"
+    )
+    @ResponseBody
+    public List<SummarizedIssueModel> getSearchResults(
+            @RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId,
+            @RequestParam(value = "title", required = true) String title
+    ) {
+        List<IssueEntity> issueEntities = issueService.searchIssues(pageId, title);
+        return modelMapper.map(
+                issueEntities,
+                new TypeToken<List<SummarizedIssueModel>>(){}.getType()
+        );
+    }
 
 }
