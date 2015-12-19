@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -16,10 +17,16 @@ import java.util.List;
 @AllArgsConstructor
 public class IssueModel {
 
+    @NotNull
     private String subject;
+
+    @NotNull
     private String content;
+
     private List<String> tags;
+
     private Date createdAt;
+
     private String timeTreeId;
 
 }
