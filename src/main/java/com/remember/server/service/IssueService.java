@@ -46,12 +46,8 @@ public class IssueService {
     }
 
     public List<IssueEntity> getRecentIssueArticles() {
-        List<IssueEntity> issues = issueRepository.findTop3rderByCreatedAt();
-
-        return modelMapper.map(
-                issues,
-                new TypeToken<List<NewIssueModel>>(){}.getType()
-        );
+        List<IssueEntity> issues = issueRepository.findTop3ByOrderByCreatedAtDesc();
+        return issues;
     }
 
 }

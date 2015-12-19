@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface IssueRepository extends MongoRepository<IssueEntity, ObjectId> {
 
-    List<IssueEntity> findTop3rderByCreatedAt();
+    List<IssueEntity> findTop3ByOrderByCreatedAtDesc();
 
 }
