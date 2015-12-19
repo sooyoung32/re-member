@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -47,7 +49,7 @@ public class RecordService {
 		recordRepository.save(recordEntity);
 
 		IssueEntity issueEntity = issueRepository.findOne(issueOid);
-		List<RecordEntity> records = issueEntity.getRecords();
+		List<RecordEntity> records = issueEntity.getRecords() == null ? new ArrayList<>() : issueEntity.getRecords();
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
 
@@ -80,7 +82,7 @@ public class RecordService {
 		recordRepository.save(recordEntity);
 
 		IssueEntity issueEntity = issueRepository.findOne(issueOid);
-		List<RecordEntity> records = issueEntity.getRecords();
+		List<RecordEntity> records = issueEntity.getRecords() == null ? new ArrayList<>() : issueEntity.getRecords();
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
 
@@ -114,7 +116,7 @@ public class RecordService {
 		recordRepository.save(recordEntity);
 
 		IssueEntity issueEntity = issueRepository.findOne(issueOid);
-		List<RecordEntity> records = issueEntity.getRecords();
+		List<RecordEntity> records = issueEntity.getRecords() == null ? new ArrayList<>() : issueEntity.getRecords();
 		records.add(records.size(), recordEntity);
 		issueEntity.setRecords(records);
 

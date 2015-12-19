@@ -10,6 +10,7 @@ import org.modelmapper.PropertyMap;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -24,6 +25,8 @@ public class IssueEntityToIssueModelPropertyMap extends PropertyMapConfigurerSup
 	private Converter<List<TagEntity>, List<String>> tagEntitiesConverter = new AbstractConverter<List<TagEntity>, List<String>>() {
 		@Override
 		protected List<String> convert(List<TagEntity> source) {
+			if (source == null)
+				return Collections.emptyList();
 			return source.stream().map(TagEntity::getName).collect(Collectors.toList());
 		}
 	};
