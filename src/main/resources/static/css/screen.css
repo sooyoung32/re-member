@@ -1,0 +1,416 @@
+@charset "UTF-8";
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@media (min-width: 768px) {
+  /* line 5, ../scss/_customize.scss */
+  .navbar {
+    background-color: #fff;
+    height: 92px;
+    margin-bottom: 0;
+  }
+  /* line 10, ../scss/_customize.scss */
+  .navbar .navbar-brand {
+    height: 92px;
+  }
+  /* line 14, ../scss/_customize.scss */
+  .navbar .navbar-nav > li > a {
+    padding-top: 35px;
+    padding-bottom: 35px;
+    color: #000;
+  }
+  /* line 20, ../scss/_customize.scss */
+  .navbar .navbar-form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  /* line 26, ../scss/_customize.scss */
+  .list-group-item {
+    overflow: auto;
+  }
+}
+/* line 12, ../scss/screen.scss */
+body {
+  padding-bottom: 40px;
+  background-color: #fff;
+}
+
+/* line 17, ../scss/screen.scss */
+.header-logo {
+  width: 180px;
+}
+
+/* line 21, ../scss/screen.scss */
+#main-visual {
+  width: 100%;
+  height: 120px;
+  color: #fff;
+  background-color: #776456;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 100;
+  line-height: 1.3em;
+  padding-top: 30px;
+}
+
+/* line 33, ../scss/screen.scss */
+#issue-title {
+  width: 100%;
+  height: 250px;
+  color: #fff;
+  background-color: #776456;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 100;
+  line-height: 1.3em;
+  padding-top: 90px;
+}
+
+/* line 46, ../scss/screen.scss */
+.scraps {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 49, ../scss/screen.scss */
+.scraps .scrap-issue {
+  position: relative;
+  display: block;
+  float: left;
+  margin-right: 25px;
+  width: 200px;
+  height: 256px;
+  background-position: center;
+  background-size: cover;
+  line-height: 1.5em;
+  color: white;
+}
+/* line 62, ../scss/screen.scss */
+.scraps .scrap-issue .issue-title {
+  position: absolute;
+  bottom: 0;
+  font-size: 23px;
+  padding: 10px;
+}
+
+/* line 71, ../scss/screen.scss */
+.section-header {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+/* line 76, ../scss/screen.scss */
+.section-header h2 {
+  color: #514d4a;
+  font-size: 18px;
+}
+/* line 80, ../scss/screen.scss */
+.section-header h2:before {
+  content: '•';
+  margin-right: 10px;
+}
+/* line 85, ../scss/screen.scss */
+.section-header h2:after {
+  content: '•';
+  margin-left: 10px;
+}
+
+/* line 92, ../scss/screen.scss */
+.hot-issues {
+  overflow: hidden;
+  *zoom: 1;
+}
+/* line 95, ../scss/screen.scss */
+.hot-issues .hot-issue {
+  display: block;
+  width: 550px;
+  height: 200px;
+  float: left;
+  background-position: center;
+  background-size: cover;
+  margin: 0 1px;
+}
+
+/* line 106, ../scss/screen.scss */
+.update-issues {
+  display: table-row;
+  width: 1100px;
+  margin: auto;
+  -webkit-border-vertical-spacing: 15px;
+}
+/* line 112, ../scss/screen.scss */
+.update-issues .update-issue {
+  display: table-cell;
+  width: 1100px;
+  height: 150px;
+  background: url(../images/bg-update-issue.jpg) no-repeat center;
+  background-size: cover;
+  border-top: 2px solid #bda6ad;
+  border-bottom: 2px solid #bda6ad;
+  text-align: center;
+  vertical-align: middle;
+  color: black;
+  color: inherit;
+  text-decoration: inherit;
+  cursor: inherit;
+}
+/* line 6, ../../../../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/gem/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/typography/links/_unstyled-link.scss */
+.update-issues .update-issue:active, .update-issues .update-issue:focus {
+  outline: none;
+}
+/* line 126, ../scss/screen.scss */
+.update-issues .update-issue h3 {
+  font-size: 30px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+/* line 132, ../scss/screen.scss */
+.update-issues .update-issue .issue-intro {
+  font-size: 25px;
+}
+
+/* line 138, ../scss/screen.scss */
+.recent-issues {
+  overflow: hidden;
+  *zoom: 1;
+  margin: auto;
+}
+/* line 142, ../scss/screen.scss */
+.recent-issues .recent-issue {
+  display: block;
+  float: left;
+  width: 220px;
+  height: 200px;
+}
+
+/* line 150, ../scss/screen.scss */
+.btn-more {
+  width: 600px;
+  margin-top: 50px;
+}
+
+/* line 155, ../scss/screen.scss */
+.list-date {
+  font-size: 15px;
+  margin-right: 20px;
+}
+
+/* line 160, ../scss/screen.scss */
+.list-title {
+  font-size: 20px;
+}
+
+/* line 163, ../scss/screen.scss */
+.sort-tab {
+  margin: 20px 0;
+}
+
+/* line 167, ../scss/screen.scss */
+.list-count {
+  color: inherit;
+  text-decoration: inherit;
+  cursor: inherit;
+}
+/* line 6, ../../../../../../../../../Applications/LiveReload.app/Contents/Resources/SASS.lrplugin/gem/gems/compass-0.12.6/frameworks/compass/stylesheets/compass/typography/links/_unstyled-link.scss */
+.list-count:active, .list-count:focus {
+  outline: none;
+}
+/* line 169, ../scss/screen.scss */
+.list-count:hover {
+  background-color: transparent;
+}
+
+/* line 174, ../scss/screen.scss */
+.form-signin {
+  max-width: 550px;
+  margin: auto;
+}
+
+/* line 179, ../scss/screen.scss */
+.issue-tag {
+  text-align: center;
+  margin: 10px 0 30px 0;
+}
+/* line 182, ../scss/screen.scss */
+.issue-tag a {
+  font-size: 20px;
+  margin: 0 8px;
+  color: #525252;
+}
+
+/* line 189, ../scss/screen.scss */
+.action-form {
+  margin-top: 30px;
+}
+/* line 193, ../scss/screen.scss */
+.action-form input:first-of-type {
+  border-radius: 0;
+  border-bottom: 0;
+}
+/* line 198, ../scss/screen.scss */
+.action-form button {
+  width: 70px;
+  height: 120%;
+  border-radius: 0;
+  background-color: #f5f5f5;
+}
+/* line 204, ../scss/screen.scss */
+.action-form .plus-icon {
+  font-size: 30px;
+  line-height: 80px;
+}
+
+/* line 212, ../scss/screen.scss */
+.comment-form .input-group .form-control {
+  border-radius: 0;
+}
+/* line 216, ../scss/screen.scss */
+.comment-form .input-group-btn:last-child > .btn {
+  border-radius: 0;
+  background-color: #f5f5f5;
+}
+
+/* line 222, ../scss/screen.scss */
+.comment-count {
+  border-bottom: 1px solid #A6A6A6;
+  text-align: left;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+/* line 230, ../scss/screen.scss */
+.comments .comment {
+  text-align: left;
+  margin-top: 30px;
+}
+/* line 234, ../scss/screen.scss */
+.comments .comment .user-name {
+  font-weight: bold;
+  vertical-align: top;
+}
+/* line 239, ../scss/screen.scss */
+.comments .comment .created-at {
+  font-size: 12px;
+}
+/* line 243, ../scss/screen.scss */
+.comments .comment .comment-remove {
+  font-size: 12px;
+  color: #a80000;
+}
+
+/* line 251, ../scss/screen.scss */
+#issue-wrapper {
+  margin-top: 50px;
+}
+
+/* line 255, ../scss/screen.scss */
+#issue-timeline {
+  overflow: hidden;
+  *zoom: 1;
+  text-align: center;
+  border-left: 1px solid #8F8F8F;
+  padding-bottom: 100px;
+}
+/* line 261, ../scss/screen.scss */
+#issue-timeline .timeline-header {
+  text-align: center;
+}
+/* line 264, ../scss/screen.scss */
+#issue-timeline .timeline-header .timeline-title {
+  font-size: 25px;
+}
+/* line 268, ../scss/screen.scss */
+#issue-timeline .timeline-header .form-control {
+  width: 100px;
+  margin: 10px auto;
+  border-radius: 0;
+}
+/* line 275, ../scss/screen.scss */
+#issue-timeline .timeline {
+  position: relative;
+  margin-top: 50px;
+  height: 850px;
+  color: #5a4c40;
+}
+/* line 281, ../scss/screen.scss */
+#issue-timeline .timeline .btn {
+  background-color: #5a4c40;
+  color: #fff;
+  border-radius: 30px;
+}
+/* line 287, ../scss/screen.scss */
+#issue-timeline .timeline .timeline-line {
+  position: absolute;
+  left: 0;
+  top: 46px;
+  width: 50%;
+  height: 30px;
+  border-right: 1px solid #231F20;
+  opacity: 0.8;
+  z-index: 100;
+}
+/* line 298, ../scss/screen.scss */
+#issue-timeline .timeline .timeline-path {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  bottom: 0;
+  margin-top: 20px;
+  width: 50%;
+  border-right: 1px solid #231F20;
+  z-index: 101;
+}
+/* line 309, ../scss/screen.scss */
+#issue-timeline .timeline .timeline-place {
+  position: absolute;
+  left: 0;
+  top: 80px;
+  bottom: 0;
+  margin-top: 20px;
+  width: 100%;
+  z-index: 102;
+}
+/* line 319, ../scss/screen.scss */
+#issue-timeline .timeline .timeline-now {
+  position: absolute;
+  font-size: 30px;
+  left: 50%;
+  top: -30px;
+  margin-left: -16px;
+}
+/* line 327, ../scss/screen.scss */
+#issue-timeline .timeline .timeline-start {
+  position: absolute;
+  font-size: 15px;
+  left: 50%;
+  bottom: -15px;
+  margin-left: -7px;
+}
+/* line 335, ../scss/screen.scss */
+#issue-timeline .timeline .timeline-point {
+  position: absolute;
+  font-size: 15px;
+  left: 50%;
+  margin-left: -7px;
+}
+
+/* line 344, ../scss/screen.scss */
+.detail-section {
+  padding: 50px 50px;
+  border-top: 1px solid #ccc;
+}
+/* line 348, ../scss/screen.scss */
+.detail-section:first-of-type {
+  padding-top: 0;
+  border-top: 0;
+}
+/* line 353, ../scss/screen.scss */
+.detail-section .section-header {
+  margin-top: 0;
+}
+
+/* line 358, ../scss/screen.scss */
+footer {
+  margin-top: 50px;
+}

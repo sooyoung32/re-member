@@ -1,0 +1,360 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "compass/utilities";
+@import "compass/css3";
+@import "variables";
+@import "customize";
+
+
+body {
+  padding-bottom: 40px;
+  background-color: #fff;
+}
+
+.header-logo {
+  width: 180px;
+}
+
+#main-visual {
+  width: 100%;
+  height: 120px;
+  color: #fff;
+  background-color: #776456;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 100;
+  line-height: 1.3em;
+  padding-top: 30px;
+}
+
+#issue-title {
+  width: 100%;
+  height: 250px;
+  color: #fff;
+  background-color: #776456;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 100;
+  line-height: 1.3em;
+  padding-top: 90px;
+}
+
+
+.scraps {
+  @include clearfix;
+
+  .scrap-issue {
+    position: relative;
+    display: block;
+    float: left;
+    margin-right: 25px;
+    width: 200px;
+    height: 256px;
+    background-position: center;
+    background-size: cover;
+    line-height: 1.5em;
+
+    @include link-colors(#fff);
+
+    .issue-title {
+      position: absolute;
+      bottom: 0;
+      font-size: 23px;
+      padding: 10px;
+    }
+  }
+}
+
+.section-header {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+
+  h2 {
+    color: #514d4a;
+    font-size: 18px;
+
+    &:before {
+      content: '•';
+      margin-right: 10px;
+    }
+
+    &:after {
+      content: '•';
+      margin-left: 10px;
+    }
+  }
+}
+
+.hot-issues {
+  @include clearfix;
+
+  .hot-issue {
+    display: block;
+    width: 550px;
+    height: 200px;
+    float: left;
+    background-position: center;
+    background-size: cover;
+    margin: 0 1px;
+  }
+}
+
+.update-issues {
+  display: table-row;
+  width: 1100px;
+  margin: auto;
+  -webkit-border-vertical-spacing: 15px;
+
+  .update-issue {
+    display: table-cell;
+    width: 1100px;
+    height: 150px;
+    background: url(../images/bg-update-issue.jpg) no-repeat center;
+    background-size: cover;
+    border-top: 2px solid #bda6ad;
+    border-bottom: 2px solid #bda6ad;
+    text-align: center;
+    vertical-align: middle;
+
+    @include link-colors(#000);
+    @include unstyled-link;
+
+    h3 {
+      font-size: 30px;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .issue-intro {
+      font-size: 25px;
+    }
+  }
+}
+
+.recent-issues {
+  @include clearfix;
+  margin: auto;
+
+  .recent-issue {
+    display: block;
+    float: left;
+    width: 220px;
+    height: 200px;
+  }
+}
+
+.btn-more {
+  width: 600px;
+  margin-top: 50px;
+}
+
+.list-date {
+  font-size: 15px;
+  margin-right: 20px;
+}
+
+.list-title {
+  font-size: 20px;
+}
+.sort-tab {
+  margin: 20px 0;
+}
+
+.list-count {
+  @include unstyled-link;
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.form-signin {
+  max-width: 550px;
+  margin: auto;
+}
+
+.issue-tag {
+  text-align: center;
+  margin: 10px 0 30px 0;
+  a {
+    font-size: 20px;
+    margin: 0 8px;
+    @include link-colors(#525252);
+  }
+}
+
+.action-form {
+
+  margin-top: 30px;
+
+  input:first-of-type {
+    border-radius: 0;
+    border-bottom: 0;
+  }
+
+  button {
+    width: 70px;
+    height: 120%;
+    border-radius: 0;
+    background-color: #f5f5f5;
+  }
+  .plus-icon {
+    font-size: 30px;
+    line-height: 80px;
+  }
+}
+
+.comment-form {
+
+  .input-group .form-control {
+    border-radius: 0;
+  }
+
+  .input-group-btn:last-child>.btn {
+    border-radius: 0;
+    background-color: #f5f5f5;
+  }
+}
+
+.comment-count {
+  border-bottom: 1px solid #A6A6A6;
+  text-align: left;
+  margin-top: 30px;
+  padding: 20px;
+}
+
+.comments {
+  .comment {
+    text-align: left;
+    margin-top: 30px;
+
+    .user-name {
+      font-weight: bold;
+      vertical-align: top;
+    }
+
+    .created-at {
+      font-size: 12px;
+    }
+
+    .comment-remove {
+      font-size: 12px;
+      color: #a80000;
+    }
+
+  }
+}
+
+#issue-wrapper {
+  margin-top: 50px;
+}
+
+#issue-timeline {
+  @include clearfix;
+  text-align: center;
+  border-left: 1px solid #8F8F8F;
+  padding-bottom: 100px;
+
+  .timeline-header {
+    text-align: center;
+
+    .timeline-title {
+      font-size: 25px;
+    }
+
+    .form-control {
+      width: 100px;
+      margin: 10px auto;
+      border-radius: 0;
+    }
+  }
+
+  .timeline {
+    position: relative;
+    margin-top: 50px;
+    height: 850px;
+    color: #5a4c40;
+
+    .btn {
+      background-color: #5a4c40;
+      color: #fff;
+      border-radius: 30px;
+    }
+
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      top: 46px;
+      width: 50%;
+      height: 30px;
+      border-right: 1px solid #231F20;
+      opacity: 0.8;
+      z-index: 100;
+    }
+
+    .timeline-path {
+      position: absolute;
+      left: 0;
+      top: 80px;
+      bottom: 0;
+      margin-top: 20px;
+      width: 50%;
+      border-right: 1px solid #231F20;
+      z-index: 101;
+    }
+
+    .timeline-place {
+      position: absolute;
+      left: 0;
+      top: 80px;
+      bottom: 0;
+      margin-top: 20px;
+      width: 100%;
+      z-index: 102;
+    }
+
+    .timeline-now {
+      position: absolute;
+      font-size: 30px;
+      left: 50%;
+      top: -30px;
+      margin-left: -16px;
+    }
+
+    .timeline-start {
+      position: absolute;
+      font-size: 15px;
+      left: 50%;
+      bottom: -15px;
+      margin-left: -7px;
+    }
+
+    .timeline-point {
+      position: absolute;
+      font-size: 15px;
+      left: 50%;
+      margin-left: -7px;
+    }
+  }
+}
+
+.detail-section {
+  padding: 50px 50px;
+  border-top: 1px solid #ccc;
+
+  &:first-of-type {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .section-header {
+    margin-top: 0;
+  }
+}
+
+footer {
+  margin-top: 50px;
+}

@@ -1,4 +1,3 @@
-/src/main/resources/static/.sass-cache
 /application.port
 /application.pid
 /gradlew.bat
@@ -153,4 +152,7 @@ Temporary Items
 Session.vim
 .netrwhist
 *~
+
+sass-cache
+.sass-cache
 
