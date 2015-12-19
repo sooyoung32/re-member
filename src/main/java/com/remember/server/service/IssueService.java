@@ -9,6 +9,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -62,4 +63,8 @@ public class IssueService {
         return issues;
     }
 
+	public List<IssueEntity> getAllIssuesByUpdatedAt(int page) {
+		List<IssueEntity> issues = issueRepository.findAll(new PageRequest(page, 10, new Sort(Sort.Direction.DESC, "modifiedAt"))).getContent();
+		return issues;
+	}
 }

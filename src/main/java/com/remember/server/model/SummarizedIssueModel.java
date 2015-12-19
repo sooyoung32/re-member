@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,5 +24,9 @@ public class SummarizedIssueModel {
     private long shareCount;
 
     private String imageUrl;
+
+	private Date createdAt;
+
+	private Date modifiedAt;
 
 }

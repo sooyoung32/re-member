@@ -91,10 +91,25 @@ public class IssueController {
     @ResponseBody
     public List<NewIssueModel> getIssue10Articles(
             @RequestHeader("AccessToken") String accessToken,
-            @RequestParam(value = "pageId", required = false, defaultValue = "1") int pageId
+            @RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId
     ) {
         List<IssueEntity> issueEntities = issueService.getIssuePaginableArticles(pageId);
         return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
+    }
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/v1/all/issues/update"
+    )
+    @ResponseBody
+    public List<SummarizedIssueModel> getAllIssuesByUpdatedAt(
+		    @RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId
+    ) {
+        List<IssueEntity> issueEntities = issueService.getAllIssuesByUpdatedAt(pageId);
+        return modelMapper.map(
+		        issueEntities,
+		        new TypeToken<List<SummarizedIssueModel>>(){}.getType()
+        );
     }
 
 }
