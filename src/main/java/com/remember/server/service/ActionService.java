@@ -37,7 +37,7 @@ public class ActionService {
     @Autowired
     private ModelMapper modelMapper;
 
-	public void createNewAction(ObjectId issueOid, ActionModel actionModel) {
+	public IssueEntity createNewAction(ObjectId issueOid, ActionModel actionModel) {
 		
 		ActionEntity actionEntity = modelMapper.map(actionModel, ActionEntity.class);
 		actionRepository.save(actionEntity);
@@ -50,6 +50,7 @@ public class ActionService {
 		actions.add(actionEntity);
 		issueRepository.save(issueEntity);
 		
+		return issueEntity;
 	}
     
 	
