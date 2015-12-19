@@ -26,6 +26,8 @@ public class DetailIssueModel {
 
     private RecordModel records;
 
-    private Date createAt;
+    private Date createdAt;
+
+    private Date modifiedAt;
 
 }
