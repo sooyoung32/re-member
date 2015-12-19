@@ -16,6 +16,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document
 public class ActionEntity extends AbstractAuditable {
 
+	public ActionEntity() {
+	}
+
+	public ActionEntity(String content, String url) {
+		this.content = content;
+		this.url = url;
+	}
+
 	@Id
 	private ObjectId id;
 

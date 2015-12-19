@@ -23,17 +23,17 @@ public class UserEntity {
 	@Id
 	private ObjectId id;
 
-	@Indexed(unique = true)
+//	@Indexed(unique = true)
 	private String email;
 
 	private String name;
 
 	private String encryptedPassword;
 
-	@Version
-	private Long version;
-
 	@DBRef
 	private List<IssueEntity> subscribedIssues;
+
+	@Version
+	private Long version;
 
 }

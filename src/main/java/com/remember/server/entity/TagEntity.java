@@ -11,6 +11,13 @@ import org.springframework.data.annotation.Id;
 @Data
 public class TagEntity {
 
+	public TagEntity() {
+	}
+
+	public TagEntity(String name) {
+		this.name = name;
+	}
+
 	@Id
 	private ObjectId id;
 
