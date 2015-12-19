@@ -1,5 +1,6 @@
 package com.remember.server.controller;
 
+import com.remember.server.entity.IssueEntity;
 import com.remember.server.entity.RecordEntity;
 import com.remember.server.entity.UserEntity;
 import com.remember.server.exception.InvalidAccessTokenGenException;
@@ -31,11 +32,11 @@ public class RecordController {
 
 	@RequestMapping(
 			method = RequestMethod.POST,
-			value = "/v1/issue/{issueId}/record"
+			value = "/v1/issue/{issueId}/record/manual"
 	)
 	@ResponseBody
-	public RecordModel postNewRecord(
-			@Valid @RequestBody NewRecordModel newRecordModel,
+	public IssueEntity postNewManualRecord(
+			@Valid @RequestBody NewManualRecordModel newManualRecordModel,
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore UserEntity userEntity,
 			@PathVariable("issueId") String issueId
@@ -43,11 +44,11 @@ public class RecordController {
 
 		ObjectId issueOid = new ObjectId(issueId);
 
-		RecordEntity recordEntity = recordService.createNewRecord(issueOid, newRecordModel);
+		IssueEntity issueEntity = recordService.createNewRecord(issueOid, newManualRecordModel);
 
 		return modelMapper.map(
-				recordEntity,
-				RecordModel.class
+				issueEntity,
+				IssueEntity.class
 		);
 
 

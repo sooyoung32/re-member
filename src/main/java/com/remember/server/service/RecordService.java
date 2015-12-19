@@ -1,8 +1,9 @@
 package com.remember.server.service;
 
 import com.remember.server.entity.IssueEntity;
+import com.remember.server.entity.ManualRecordEntity;
 import com.remember.server.entity.RecordEntity;
-import com.remember.server.model.NewRecordModel;
+import com.remember.server.model.NewManualRecordModel;
 import com.remember.server.repository.IssueRepository;
 import com.remember.server.repository.RecordRepository;
 import org.bson.types.ObjectId;
@@ -28,11 +29,11 @@ public class RecordService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public IssueEntity createNewRecord(ObjectId issueOid, NewRecordModel recordModel) {
+	public IssueEntity createNewRecord(ObjectId issueOid, NewManualRecordModel recordModel) {
 
-		RecordEntity recordEntity = modelMapper.map(
+		ManualRecordEntity recordEntity = modelMapper.map(
 				recordModel,
-				RecordEntity.class
+				ManualRecordEntity.class
 		);
 		recordRepository.save(recordEntity);
 

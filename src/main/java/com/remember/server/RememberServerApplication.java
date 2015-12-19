@@ -51,7 +51,7 @@ public class RememberServerApplication {
 		while(true) {
 
 			try {
-				createTestIssue();
+//				createTestIssue();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
