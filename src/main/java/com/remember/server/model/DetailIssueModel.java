@@ -26,6 +26,8 @@ public class DetailIssueModel {
     private long shareCount;
 
     private List<RecordModel> records;
+    
+	private int recordSize;
 
     private List<ActionModel> actions;
 

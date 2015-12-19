@@ -28,6 +28,8 @@ public class NewIssueModel {
     private List<String> tags;
 
     private RecordModel records;
+    
+	private int recordSize;
 
     private Date createdAt;
 
