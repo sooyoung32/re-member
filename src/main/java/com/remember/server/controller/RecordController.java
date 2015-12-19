@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -35,7 +36,7 @@ public class RecordController {
 			value = "/v1/issue/{issueId}/record/manual"
 	)
 	@ResponseBody
-	public IssueEntity postNewManualRecord(
+	public IssueModel postNewManualRecord(
 			@Valid @RequestBody NewManualRecordModel newManualRecordModel,
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore UserEntity userEntity,
@@ -48,7 +49,31 @@ public class RecordController {
 
 		return modelMapper.map(
 				issueEntity,
-				IssueEntity.class
+				IssueModel.class
+		);
+
+
+	}
+
+	@RequestMapping(
+			method = RequestMethod.POST,
+			value = "/v1/issue/{issueId}/record/opengraph"
+	)
+	@ResponseBody
+	public IssueModel postNewOpenGraphRecord(
+			@Valid @RequestBody NewOpenGraphRecordModel newOpenGraphRecordModel,
+			@RequestHeader("AccessToken") String accessToken,
+			@ApiIgnore UserEntity userEntity,
+			@PathVariable("issueId") String issueId
+	) throws IOException {
+
+		ObjectId issueOid = new ObjectId(issueId);
+
+		IssueEntity issueEntity = recordService.createNewRecord(issueOid, newOpenGraphRecordModel);
+
+		return modelMapper.map(
+				issueEntity,
+				IssueModel.class
 		);
 
 
