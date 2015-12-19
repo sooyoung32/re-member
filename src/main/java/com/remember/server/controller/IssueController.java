@@ -93,7 +93,6 @@ public class IssueController {
     )
     @ResponseBody
     public List<NewIssueModel> getIssue10Articles(
-            @RequestHeader("AccessToken") String accessToken,
             @RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId
     ) {
         List<IssueEntity> issueEntities = issueService.getIssuePaginableArticles(pageId);
