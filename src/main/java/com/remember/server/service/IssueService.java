@@ -57,8 +57,8 @@ public class IssueService {
         return issues;
     }
 
-    public Page<IssueEntity> getIssuePaginableArticles(int pageId) {
-        Page<IssueEntity> issues = issueRepository.findAll(new PageRequest(pageId, pageId * 10));
+    public List<IssueEntity> getIssuePaginableArticles(int pageId) {
+        List<IssueEntity> issues = issueRepository.findAll(new PageRequest(pageId, 10)).getContent();
         return issues;
     }
 
