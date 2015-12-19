@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -22,7 +23,11 @@ public class IssueEntity extends AbstractAuditable {
 	@Id
 	private ObjectId id;
 
+	@NotNull
 	private String title;
+
+	@NotNull
+	private String content;
 
 	private List<TagEntity> tags;
 
