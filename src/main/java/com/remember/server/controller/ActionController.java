@@ -21,6 +21,7 @@ import com.remember.server.entity.ActionEntity;
 import com.remember.server.entity.IssueEntity;
 import com.remember.server.entity.UserEntity;
 import com.remember.server.model.ActionModel;
+import com.remember.server.model.IssueModel;
 import com.remember.server.model.NewManualRecordModel;
 import com.remember.server.service.ActionService;
 
@@ -40,7 +41,7 @@ public class ActionController {
 			value="/v1/issue/{issueId}/action"
 			)
 	@ResponseBody
-	public void postNewAction(
+	public IssueModel postNewAction(
 			@Valid @RequestBody ActionModel actionModel,
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore UserEntity userEntity,
@@ -48,7 +49,12 @@ public class ActionController {
 			) {
 		
 		ObjectId issueOid = new ObjectId(issueId);
-		actionService.createNewAction(issueOid, actionModel);
+		IssueEntity issueEntity =  actionService.createNewAction(issueOid, actionModel);
+		
+		return modelMapper.map(
+				issueEntity,
+				IssueModel.class
+		);
 		
 	}
     
