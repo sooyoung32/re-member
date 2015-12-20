@@ -22,7 +22,7 @@ public class JoinModel {
 	@NotNull
 	private String password;
 
-	@NotNull
+//	@NotNull
 	private Date joinAt;
 
 	@NotNull
