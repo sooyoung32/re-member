@@ -14,7 +14,7 @@ import org.springframework.data.annotation.Version;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentMondel {
+public class CommentModel {
 
 	private String id;
 	
