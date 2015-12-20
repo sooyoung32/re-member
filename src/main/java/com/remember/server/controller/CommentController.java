@@ -37,19 +37,4 @@ public class CommentController {
     ) {
         return null;
     }
-
-    @RequestMapping(
-            method = RequestMethod.GET,
-            value = "/v1/comment/{issueId}"
-    )
-    @ResponseBody
-    public CommentModel getCommentsList(
-            @Valid @RequestBody CommentModel commentModel,
-            @RequestHeader("AccessToken") String accessToken,
-            @ApiIgnore UserEntity userEntity,
-            @PathVariable("issueId") String issueId
-    ) {
-        return null;
-    }
-
 }
