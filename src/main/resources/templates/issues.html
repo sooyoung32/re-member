@@ -1,102 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/layout">
 
 <head>
   <title>전체 이슈</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-        th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
-        rel="stylesheet" media="screen" />
-
-  <link href="../static/css/screen.css"
-        th:href="@{/static/css/screen.css}"
-        rel="stylesheet" media="screen" />
-
-  <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-          th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-
-  <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/js/bootstrap.min.js"
-          th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
 </head>
 <body>
 <!-- Header -->
-<div th:replace="fragments/header :: header">
-  <div id="header" class="navbar" th:fragment="header">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#" th:href="@{/}"><img class="header-logo" src="../static/images/logo.jpg" th:src="@{/static/images/logo.jpg}" /></a>
-      </div>
-      <form name="search-form" class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search..." />
-      </form>
-      <div class="navbar-right navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#" th:href="@{/issues}">전체이슈</a></li>
-          <li><a href="#" th:href="@{/issues/create}">이슈등록</a></li>
-          <li><a href="#" th:href="@{/my-issues}">마이이슈</a></li>
-          <li><a href="#" th:href="@{/notification}">알림</a></li>
+<div th:replace="fragments/header :: header"></div>
+<div layout:fragment="content">
+  <div class="container">
+    <div class="page-header">
+      <h1>모든 이슈</h1>
+    </div>
+    <section>
+      <div class="clearfix">
+        <ul class="sort-tab nav nav-pills pull-right">
+          <li role="presentation" class="active"><a href="#">구독 순</a></li>
+          <li role="presentation"><a href="#">기록 순</a></li>
+          <li role="presentation"><a href="#">업데이트 순</a></li>
+          <li role="presentation"><a href="#">등록 순</a></li>
         </ul>
       </div>
-      <!--/.nav-collapse -->
-    </div>
-  </div>
-  <!--/.nav-collapse -->
-</div>
-<div class="container">
-  <div class="page-header">
-    <h1>모든 이슈</h1>
-  </div>
-  <section>
-    <div class="clearfix">
-    <ul class="sort-tab nav nav-pills pull-right">
-      <li role="presentation" class="active"><a href="#">구독 순</a></li>
-      <li role="presentation"><a href="#">기록 순</a></li>
-      <li role="presentation"><a href="#">업데이트 순</a></li>
-      <li role="presentation"><a href="#">등록 순</a></li>
-    </ul>
-    </div>
 
-    <ul class="list-group">
-      <li class="list-group-item" th:each="issue : ${issues}">
-        <span class="list-date" th:text="${#dates.format(issue.createdAt,'yyyy.MM.dd')}">2015.05.16</span>
-        <span class="list-title" th:text="${issue.title}"></span>
+      <ul id="list" class="list-group">
+        <li class="list-group-item" th:each="issue : ${issues}">
+          <span class="list-date" th:text="${#dates.format(issue.createdAt,'yyyy.MM.dd')}">2015.05.16</span>
+          <span class="list-title" th:text="${issue.title}"></span>
 
-        <div class="pull-right">
-          <div class="btn btn-default list-count">구독 <span class="badge" th:text="${issue.subscribeCount}">14</span></div>
-          <div class="btn btn-default list-count">기록 <span class="badge" th:text="${issue.recordSize}">14</span></div>
-          <a href="/issue.html" th:href="@{'/issue/'+${issue.id}}" class="btn btn-primary">보러가기</a>
-        </div>
-      </li>
-    </ul>
-
-    <nav class="text-center">
-      <ul class="pagination">
-        <li>
-          <a href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li>
-          <a href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
+          <div class="pull-right">
+            <div class="btn btn-default list-count">구독 <span class="badge" th:text="${issue.subscribeCount}">14</span>
+            </div>
+            <div class="btn btn-default list-count">기록 <span class="badge" th:text="${issue.recordSize}">14</span></div>
+            <a href="/issue.html" th:href="@{'/issue/'+${issue.id}}" class="btn btn-primary">보러가기</a>
+          </div>
         </li>
       </ul>
-    </nav>
-  </section>
-  <footer>
-    <div th:replace="fragments/footer :: footer">&copy; 2015 The Static Templates</div>
-  </footer>
+
+      <script type="text/x-handlebars" id="listTemplate">
+        {{#each this}}
+        <li class="list-group-item">
+          <span class="list-date">{{dateFormat createdAt format='yyyy.MM.dd'}}</span>
+          <span class="list-title">{{title}}</span>
+
+          <div class="pull-right">
+            <div class="btn btn-default list-count">구독 <span class="badge">{{subscribeCount}}</span></div>
+            <div class="btn btn-default list-count">기록 <span class="badge">{{recordSize}}</span></div>
+            <a href="/issue/{{id}}" class="btn btn-primary">보러가기</a>
+          </div>
+        </li>
+        {{/each}}
+      </script>
+
+      <nav class="text-center">
+        <a href="javascript:;" id="list-more" class="btn btn-success btn-lg btn-more">더 보기</a>
+      </nav>
+
+    </section>
+
+    <script th:inline="javascript">
+      /*<![CDATA[*/
+      $(function () {
+        var pageId = 1;
+        var template = Handlebars.compile($('#listTemplate').text());
+
+        $('#list-more').click(function () {
+          $.get(apiPrefix + '/issues', {pageId: pageId++}, function (data) {
+            var html = template(data);
+            $('#list').append(html);
+
+            if (data.length < 10) $(this).hide();
+          });
+        });
+      });
+      /*]]>*/
+    </script>
+  </div>
 </div>
 </body>
 </html>

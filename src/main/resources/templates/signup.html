@@ -1,79 +1,80 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/layout">
 
 <head>
   <title>회원가입</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-        th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
-        rel="stylesheet" media="screen" />
-
-  <link href="../static/css/screen.css"
-        th:href="@{/static/css/screen.css}"
-        rel="stylesheet" media="screen" />
-
-  <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-          th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-
-  <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/js/bootstrap.min.js"
-          th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<!-- Header -->
-<div th:replace="fragments/header :: header">
-  <div id="header" class="navbar" th:fragment="header">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#" th:href="@{/}"><img class="header-logo" src="../static/images/logo.jpg" th:src="@{/static/images/logo.jpg}" /></a>
-      </div>
-      <form name="search-form" class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search..." />
+<div layout:fragment="content">
+  <div class="container">
+    <section>
+      <form id="signup-form" class="form-signin">
+        <h2 class="form-signin-heading">회원가입</h2>
+        <div class="form-group">
+          <label for="input-name" class="sr-only">Email address</label>
+          <input type="text" id="input-name" class="form-control input-lg" placeholder="실명 입력" required="required" autofocus="autofocus" />
+        </div>
+        <div class="form-group">
+          <label for="input-email" class="sr-only">Email address</label>
+          <input type="email" id="input-email" class="form-control input-lg" placeholder="이메일 입력" required="required" />
+        </div>
+        <div class="form-group">
+          <label for="input-password" class="sr-only">Password</label>
+          <input type="password" id="input-password" class="form-control input-lg" placeholder="패스워드 입력" required="required" />
+        </div>
+        <div class="form-group">
+          <label for="input-repassword" class="sr-only">Password</label>
+          <input type="password" id="input-repassword" class="form-control input-lg" placeholder="패스워드 재입력" required="required" />
+        </div>
+        <button class="btn btn-lg btn-success btn-block" type="submit">회원가입</button>
       </form>
-      <div class="navbar-right navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#" th:href="@{/issues}">전체이슈</a></li>
-          <li><a href="#" th:href="@{/issues/create}">이슈등록</a></li>
-          <li><a href="#" th:href="@{/my-issues}">마이이슈</a></li>
-          <li><a href="#" th:href="@{/notification}">알림</a></li>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
-    </div>
+    </section>
   </div>
-  <!--/.nav-collapse -->
-</div>
-<div class="container">
-  <section>
 
-    <form class="form-signin">
-      <h2 class="form-signin-heading">회원가입</h2>
-      <div class="form-group">
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" id="inputEmail" class="form-control input-lg" placeholder="실명 입력" required autofocus>
-      </div>
-      <div class="form-group">
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control input-lg" placeholder="이메일 입력" required>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control input-lg" placeholder="패스워드 입력" required>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control input-lg" placeholder="패스워드 재입력" required>
-      </div>
-      <button class="btn btn-lg btn-success btn-block" type="submit">회원가입</button>
-    </form>
-  </section>
-  <footer>
-    <div th:replace="fragments/footer :: footer">&copy; 2015 The Static Templates</div>
-  </footer>
+  <script th:inline="javascript">
+    $(function() {
+
+      var submit = false;
+
+      $('#signup-form').submit(function(e) {
+
+        if(!submit) {
+
+          var email = $('#input-email').val();
+          var password = $('#input-password').val();
+          var name = $('#input-name').val();
+          var repassword = $('#input-repassword').val();
+
+          if(password != repassword) {
+            alert('패스워드가 일치하지 않습니다.');
+            $('#input-repassword').get(0).focus();
+            return;
+          }
+
+          submit = true;
+
+          $.ajax({
+            url : apiPrefix+'/user',
+            type: 'post',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({email: email, password: password, name: name }),
+            success : function() {
+              location.href='/login';
+            },
+            error : function() {
+              submit = false;
+            }
+          });
+        }
+
+
+        e.preventDefault();
+      });
+    });
+  </script>
 </div>
 </body>
 </html>

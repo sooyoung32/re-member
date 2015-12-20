@@ -92,11 +92,11 @@ public class IssueController {
             value = "/v1/issues"
     )
     @ResponseBody
-    public List<NewIssueModel> getIssue10Articles(
+    public List<SummarizedIssueModel> getIssue10Articles(
             @RequestParam(value = "pageId", required = false, defaultValue = "0") int pageId
     ) {
         List<IssueEntity> issueEntities = issueService.getIssuePaginableArticles(pageId);
-        return modelMapper.map(issueEntities, new TypeToken<List<NewIssueModel>>(){}.getType());
+        return modelMapper.map(issueEntities, new TypeToken<List<SummarizedIssueModel>>(){}.getType());
     }
 
     @RequestMapping(

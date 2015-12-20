@@ -1,197 +1,156 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/layout">
 
 <head>
   <title>이슈 상세</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-        th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
-        rel="stylesheet" media="screen"/>
-
-  <link href="../static/css/screen.css"
-        th:href="@{/static/css/screen.css}"
-        rel="stylesheet" media="screen"/>
-
-  <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-          th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-
-  <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/js/bootstrap.min.js"
-          th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<!-- Header -->
-<div th:replace="fragments/header :: header">
-  <div id="header" class="navbar" th:fragment="header">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#" th:href="@{/}"><img class="header-logo" src="../static/images/logo.jpg"
-                                                             th:src="@{/static/images/logo.jpg}"/></a>
-      </div>
-      <div class="navbar-right navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#" th:href="@{/issues}">로그인</a></li>
-          <li><a href="#" th:href="@{/issues/create}">회원가입</a></li>
-        </ul>
-      </div>
-      <form name="search-form" class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search..."/>
-      </form>
-      <div class="navbar-right navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#" th:href="@{/issues}">전체이슈</a></li>
-          <li><a href="#" th:href="@{/issues/create}">이슈등록</a></li>
-          <li><a href="#" th:href="@{/my-issues}">마이이슈</a></li>
-          <li><a href="#" th:href="@{/notification}">알림</a></li>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
-    </div>
+<div layout:fragment="content">
+  <div id="issue-title" th:text="${issue.title}">
   </div>
-  <!--/.nav-collapse -->
-</div>
-<div id="issue-title">
-  "가습기 살균제 소송 아직 진행중"
-</div>
-<div class="issue-tag">
-  <a href="#">#가습기</a>
-  <a href="#">#폐질환</a>
-  <a href="#">#임산부</a>
-  <a href="#">#영유아</a>
-  <a href="#">#사망</a>
-</div>
-<div class="container">
-  <div id="issue-wrapper" class="clearfix">
-    <div id="issue-detail" class="col-xs-8 text-center">
-      <section class="detail-section">
-        <div class="section-header">
-          <h1>개요</h1>
-        </div>
-        <p class="lead">
-          가습기 살균제 사망사건은 대한민국에서 가습기를 쓰면서 가습기 살균제를 분무액에 첨가해
-          사용한 사람들이 사망하거나 폐질환에 걸린 사건이다.<br/>
-          2012년 10월 8일 기준, 환경보건시민센터 집계에 의하면,<br/>
-          영유아 36명을 포함한 78명이 사망하였다.<br/>
-          역학 조사결과 가습기 살균제에 의한것으로 밝혀져 2011년 11월 11일 가습기 살균제 6종이 회수되었다.
-        </p>
-        <div>
-          <button class="btn btn-lg btn-default"><i class="glyphicon glyphicon-paperclip"></i> 구독</button>
-          <button class="btn btn-lg btn-success"><i class="glyphicon glyphicon-share"></i> 공유</button>
-        </div>
-      </section>
-      <section class="detail-section">
-        <div class="section-header">
-          <h1>세상을 바꾸는 행동</h1>
-        </div>
-        <div class="actions">
-          <div class="action-content">
-            <span>•</span> 아고라 서명운동 URL : <a href="#">http://www.daum.net</a>
+  <div class="issue-tag">
+    <a href="#" th:each="tag : ${issue.tags}" th:text="${tag.name}">테그</a>
+  </div>
+  <div class="container">
+    <div id="issue-wrapper" class="clearfix">
+      <div id="issue-detail" class="col-xs-8 text-center">
+        <section class="detail-section">
+          <div class="section-header">
+            <h1>개요</h1>
           </div>
-          <div class="action-content">
-            <span>•</span> 후원금 모금 : 신한은행 433-04-222662
+          <p class="lead" th:text="${issue.content}"></p>
+          <div>
+            <button class="btn btn-lg btn-default"><i class="glyphicon glyphicon-paperclip"></i> 구독</button>
+            <button class="btn btn-lg btn-success"><i class="glyphicon glyphicon-share"></i> 공유</button>
           </div>
-        </div>
-        <div class="clearfix">
-          <form class="action-form form-horizontal">
-            <div class="col-xs-1 plus-icon">
-              <i class="glyphicon glyphicon-plus"></i>
+        </section>
+        <section class="detail-section">
+          <div class="section-header">
+            <h1>세상을 바꾸는 행동</h1>
+          </div>
+          <div class="actions">
+            <div class="action-content" th:each="action : ${issue.actions}">
+              <span>•</span> <span th:each="${action.content}">아고라 서명운동 URL</span>
+              <span th:if="${action.url != null}">
+                : <a href="#" th:href="${action.url}" th:text="${action.url}">http://www.daum.net</a>
+              </span>
             </div>
-            <div class="col-xs-11">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="내용" />
-                <input type="text" class="form-control" placeholder="관련 URL 입력" />
-                <div class="input-group-btn">
-                  <button class="btn btn-default ">입력</button>
+          </div>
+          <div class="clearfix">
+            <form class="action-form form-horizontal">
+              <div class="col-xs-1 plus-icon">
+                <i class="glyphicon glyphicon-plus"></i>
+              </div>
+              <div class="col-xs-11">
+                <div class="input-group">
+                  <input type="text" id="action-content" class="form-control" placeholder="내용" />
+                  <input type="text" id="action-url" class="form-control" placeholder="관련 URL 입력" />
+                  <div class="input-group-btn">
+                    <button type="button" id="submit-action" class="btn btn-default ">입력</button>
+                  </div>
                 </div>
+              </div>
+            </form>
+          </div>
+        </section>
+        <section class="detail-section">
+          <div class="section-header">
+            <h1>코멘트</h1>
+          </div>
+          <form class="comment-form form-horizontal">
+            <div class="input-group input-group-lg">
+              <input type="text" class="form-control" placeholder="코멘트를 입력해 주세요." />
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default">등록</button>
               </div>
             </div>
           </form>
-        </div>
-      </section>
-      <section class="detail-section">
-        <div class="section-header">
-          <h1>코멘트</h1>
-        </div>
-        <form class="comment-form form-horizontal">
-          <div class="input-group input-group-lg">
-            <input type="text" class="form-control" placeholder="코멘트를 입력해 주세요." />
-            <div class="input-group-btn">
-              <button type="button" class="btn btn-default">등록</button>
+          <div class="comment-count">전체댓글 12</div>
+          <div class="comments">
+            <div class="comment">
+              <span class="user-name">username</span> <span class="created-at">2015/05/14</span> <a href="#" class="comment-remove"><i class="glyphicon glyphicon-remove"></i></a>
+              <div class="comment-content">어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구</div>
+            </div>
+            <div class="comment">
+              <span class="user-name">username</span> <span class="created-at">2015/05/14</span>
+              <div class="comment-content">어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구</div>
+            </div>
+            <div class="comment">
+              <span class="user-name">username</span> <span class="created-at">2015/05/14</span>
+              <div class="comment-content">어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구</div>
+            </div>
+            <div class="comment">
+              <span class="user-name">username</span> <span class="created-at">2015/05/14</span>
+              <div class="comment-content">어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구</div>
             </div>
           </div>
-        </form>
-        <div class="comment-count">전체댓글 12</div>
-        <div class="comments">
-          <div class="comment">
-            <span class="user-name">username</span> <span class="created-at">2015/05/14</span> <a href="#" class="comment-remove"><i class="glyphicon glyphicon-remove"></i></a>
-            <div class="comment-content">어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구</div>
-          </div>
-          <div class="comment">
-            <span class="user-name">username</span> <span class="created-at">2015/05/14</span>
-            <div class="comment-content">어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구</div>
-          </div>
-          <div class="comment">
-            <span class="user-name">username</span> <span class="created-at">2015/05/14</span>
-            <div class="comment-content">어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구</div>
-          </div>
-          <div class="comment">
-            <span class="user-name">username</span> <span class="created-at">2015/05/14</span>
-            <div class="comment-content">어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구 어쩌구저쩌구어쩌구저쩌구</div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <div id="issue-timeline" class="col-xs-4">
-      <div class="timeline-header">
-        <div class="timeline-title">총 6개의 타임라인</div>
-        <select class="form-control input-sm">
-          <option>최근 등록순</option>
-        </select>
+        </section>
       </div>
+      <div id="issue-timeline" class="col-xs-4">
+        <div class="timeline-header">
+          <div class="timeline-title">총 <span th:text="${issue.recordSize}"></span>개의 타임라인</div>
+          <select class="form-control input-sm">
+            <option>최근 등록순</option>
+          </select>
+        </div>
 
-      <div class="timeline">
-        <button class="btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i> 기록추가</button>
-        <div class="timeline-line"></div>
-        <div class="timeline-path"></div>
-        <div class="timeline-place">
-          <div class="timeline-now">
-            <i class="glyphicon glyphicon-map-marker"></i>
-          </div>
+        <div class="timeline">
+          <button class="btn btn-default btn-lg"><i class="glyphicon glyphicon-plus"></i> 기록추가</button>
+          <div class="timeline-line"></div>
+          <div class="timeline-path"></div>
+          <div class="timeline-place">
+            <div class="timeline-now">
+              <i class="glyphicon glyphicon-map-marker"></i>
+            </div>
 
-          <div class="timeline-point" style="bottom: 700px;">
-            <i class="glyphicon glyphicon-chevron-up"></i> 12.12
-          </div>
-
-          <div class="timeline-point" style="bottom: 400px;">
-            <i class="glyphicon glyphicon-chevron-up"></i> 12.12
-          </div>
-
-          <div class="timeline-point" style="bottom: 350px;">
-            <i class="glyphicon glyphicon-chevron-up"></i> 12.12
-          </div>
-
-          <div class="timeline-point" style="bottom: 180px;">
-            <i class="glyphicon glyphicon-chevron-up"></i> 12.12
-          </div>
-
-          <div class="timeline-point" style="bottom: 90px;">
-            <i class="glyphicon glyphicon-chevron-up"></i> 12.12
-          </div>
-
-          <div class="timeline-start">
-            <i class="glyphicon glyphicon-unchecked"></i> 12.12
+            <div class="timeline-point" th:each="record : ${issue.records}">
+              <i class="glyphicon glyphicon-chevron-up"></i> <span th:text="${#dates.format(record.date, 'MM.dd')}"></span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <footer>
-    <div th:replace="fragments/footer :: footer">&copy; 2015 The Static Templates</div>
-  </footer>
+  <script th:inline="javascript">
+    $(function() {
+      var submit = false;
+      $('#submit-action').click(function() {
+        if(!submit) {
+
+          var issueId = /*[[${issue.id}]]*/ "";
+          var content = $('#action-content').val();
+          var url = $('#action-url').val();
+
+          if(content == '') {
+            alert('내용을 입력해 주세요.');
+            $('#action-content').get(0).focus();
+            return;
+          }
+
+          submit = true;
+
+          $.ajax({
+            url : apiPrefix+'/issue/'+issueId+'/action',
+            dataType : 'json',
+            type: 'post',
+            headers : {
+              'accessToken' : ''
+            },
+            data : JSON.stringify({content : content, url : url}),
+            success : function() {
+              location.reload();
+            },
+            error : function() {
+              submit = false;
+            }
+          });
+        }
+
+      });
+    });
+  </script>
 </div>
 </body>
 </html>
