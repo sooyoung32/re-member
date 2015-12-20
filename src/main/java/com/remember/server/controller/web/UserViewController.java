@@ -14,8 +14,6 @@ import javax.validation.Valid;
 @Controller
 public class UserViewController {
 
-
-
     @RequestMapping(
             method = RequestMethod.GET,
             value = "/login"

@@ -3,6 +3,7 @@ package com.remember.server.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -18,6 +19,7 @@ import java.util.List;
 public class NewManualRecordModel {
 
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date;
 
 	@NotNull

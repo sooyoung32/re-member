@@ -25,6 +25,20 @@
 
   <script src="../static/js/app.js"
           th:src="@{/static/js/app.js}"></script>
+
+  <script th:inline="javascript">
+    $(function() {
+      var accessToken = getCookie('accessToken');
+
+      if(accessToken) {
+        $('#loginMenu').hide();
+        $('#logoutMenu').show();
+      } else {
+        $('#loginMenu').show();
+        $('#logoutMenu').hide();
+      }
+    });
+  </script>
 </head>
 <body>
 <!-- Header -->

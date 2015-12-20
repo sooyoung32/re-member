@@ -53,7 +53,7 @@
         {{/each}}
       </script>
 
-      <nav class="text-center">
+      <nav class="text-center" th:if="${#lists.size(issues)} == 10">
         <a href="javascript:;" id="list-more" class="btn btn-success btn-lg btn-more">더 보기</a>
       </nav>
 
@@ -62,15 +62,16 @@
     <script th:inline="javascript">
       /*<![CDATA[*/
       $(function () {
-        var pageId = 1;
+        var pageId = 0;
         var template = Handlebars.compile($('#listTemplate').text());
 
         $('#list-more').click(function () {
-          $.get(apiPrefix + '/issues', {pageId: pageId++}, function (data) {
+          pageId++;
+          $.get(apiPrefix + '/issues', {pageId: pageId}, function (data) {
             var html = template(data);
             $('#list').append(html);
 
-            if (data.length < 10) $(this).hide();
+            if (data.length < 10) $('#list-more').hide();
           });
         });
       });

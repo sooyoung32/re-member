@@ -65,4 +65,17 @@ public class IssueViewController {
         return "issue";
 
     }
+
+
+    @RequestMapping(
+            method = RequestMethod.GET,
+            value = "/issue/create"
+    )
+    public String createIssueArticle() {
+
+        return "create";
+
+    }
+
+
 }
