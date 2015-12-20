@@ -39,6 +39,7 @@ public class CommentService {
 		}
 		comments.add(commentEntity);
 		issueEntity.setCommentSize(comments.size());
+		issueEntity.setComments(comments);
 		issueRepository.save(issueEntity);
 		
 		return issueEntity;
