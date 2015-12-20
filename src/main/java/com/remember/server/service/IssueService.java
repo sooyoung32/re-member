@@ -1,9 +1,12 @@
 package com.remember.server.service;
 
 import com.remember.server.entity.IssueEntity;
+import com.remember.server.entity.RecordEntity;
 import com.remember.server.entity.UserEntity;
 import com.remember.server.model.NewIssueModel;
 import com.remember.server.repository.IssueRepository;
+import com.remember.server.repository.RecordRepository;
+
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -30,6 +33,9 @@ public class IssueService {
 
 	@Autowired
 	private RecordService recordService;
+	
+	@Autowired
+	private RecordRepository recordRepository;
 
     public IssueEntity createNewIssueArticle(NewIssueModel newIssueModel, UserEntity userEntity) {
 
@@ -38,11 +44,11 @@ public class IssueService {
                 newIssueModel,
                 IssueEntity.class
         );
-	    issueEntity.setRecordSize(1);
+	    issueEntity.setRecordSize(0);
 	    issueEntity.setCreator(userEntity);
-
+	   
         issueRepository.save(issueEntity);
-
+        
 	    recordService.createNewRecord(issueEntity.getId(), newIssueModel.getRecord(), userEntity);
 
         return issueEntity;

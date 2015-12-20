@@ -6,7 +6,10 @@ import com.remember.server.model.NewOpenGraphRecordModel;
 import com.remember.server.model.NewYoutubeRecordModel;
 import com.remember.server.repository.IssueRepository;
 import com.remember.server.repository.RecordRepository;
+
+import lombok.extern.slf4j.Slf4j;
 import me.shakiba.og4j.OpenGraph;
+
 import org.bson.types.ObjectId;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -27,7 +30,7 @@ import java.util.List;
 /**
  * Created by NerdHerd on 2015. 12. 19..
  */
-
+@Slf4j
 @Service
 public class RecordService {
 
@@ -55,11 +58,12 @@ public class RecordService {
 		issueEntity.setRecords(records);
 		issueEntity.setModifiedAt(new Date());
 		issueEntity.setRecordSize(issueEntity.getRecordSize() + 1);
+		issueEntity.setCreator(userEntity);
 		issueRepository.save(issueEntity);
 
 		return issueEntity;
 	}
-
+	
 	public IssueEntity createNewRecord(ObjectId issueOid, NewOpenGraphRecordModel recordModel, UserEntity userEntity) throws IOException {
 
 		RecordEntity recordEntity = modelMapper.map(
