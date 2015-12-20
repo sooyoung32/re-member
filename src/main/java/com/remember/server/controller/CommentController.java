@@ -2,7 +2,7 @@ package com.remember.server.controller;
 
 import com.remember.server.entity.IssueEntity;
 import com.remember.server.entity.UserEntity;
-import com.remember.server.model.CommentModel;
+import com.remember.server.model.NewCommentModel;
 import com.remember.server.model.DetailIssueModel;
 import com.remember.server.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,7 @@ public class CommentController {
     )
     @ResponseBody
     public DetailIssueModel addComment(
-            @Valid @RequestBody CommentModel commentModel,
+            @Valid @RequestBody NewCommentModel commentModel,
             @RequestHeader("AccessToken") String accessToken,
             @ApiIgnore UserEntity userEntity,
             @PathVariable("issueId") String issueId

@@ -32,5 +32,11 @@ public class DetailIssueModel {
     private List<ActionModel> actions;
 
     private String imageUrl;
+    
+    private List<CommentModel> comments;
+    
+    private int commentSize;
+    
+    
 
 }

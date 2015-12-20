@@ -34,5 +34,8 @@ public class NewIssueModel {
 
     @NotNull
     private String imageUrl;
+    
+    private  NewCommentModel comment;
+    
 
 }
