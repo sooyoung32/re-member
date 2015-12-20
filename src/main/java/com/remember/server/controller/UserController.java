@@ -46,6 +46,7 @@ public class UserController {
 	) throws InvalidAccessTokenGenException {
 
 		UserEntity newUserEntity = new UserEntity();
+		newUserEntity.setJoinAt(new Date());
 		newUserEntity.setEmail(joinModel.getEmail());
 		newUserEntity.setEncryptedPassword(SCRYPT.encrypt(joinModel.getPassword()));
 		userRepository.save(newUserEntity);
