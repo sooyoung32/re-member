@@ -22,7 +22,6 @@ public class LoginModel {
 	@NotNull
 	private String password;
 
-	@NotNull
 	private Date loginAt;
 
 }
