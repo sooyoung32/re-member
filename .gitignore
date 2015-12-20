@@ -153,3 +153,6 @@ Session.vim
 .netrwhist
 *~
 
+sass-cache
+.sass-cache
+

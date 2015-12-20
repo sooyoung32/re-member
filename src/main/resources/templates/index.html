@@ -2,150 +2,165 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Hello Spring Boot!</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.2.0/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen" />
-    <link href="../static/css/core.css"
-          th:href="@{/css/core.css}"
-          rel="stylesheet" media="screen" />
-    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.1/jquery.min.js"
-            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+  <title>Hello Spring Boot!</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
+        th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
+        rel="stylesheet" media="screen"/>
+
+  <link href="../static/css/screen.css"
+        th:href="@{/static/css/screen.css}"
+        rel="stylesheet" media="screen"/>
+
+  <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+          th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+  <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/js/bootstrap.min.js"
+          th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
+
+  <script src="../static/js/app.js"
+          th:src="@{/static/js/app.js}"></script>
 </head>
 <body>
 <!-- Header -->
 <div th:replace="fragments/header :: header">
-    <!-- ============================================================================ -->
-    <!-- This content is only used for static prototyping purposes (natural templates)-->
-    <!-- and is therefore entirely optional, as this markup fragment will be included -->
-    <!-- from "fragments/header.html" at runtime.                                     -->
-    <!-- ============================================================================ -->
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Static header</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                </ul>
-            </div>
-        </div>
+  <div id="header" class="navbar" th:fragment="header">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#" th:href="@{/}"><img class="header-logo" src="../static/images/logo.jpg"
+                                                             th:src="@{/static/images/logo.jpg}"/></a>
+      </div>
+      <div class="navbar-right navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#" th:href="@{/issues}">로그인</a></li>
+          <li><a href="#" th:href="@{/issues/create}">회원가입</a></li>
+        </ul>
+      </div>
+      <form name="search-form" class="navbar-form navbar-right">
+        <input type="text" class="form-control" placeholder="Search..."/>
+      </form>
+      <div class="navbar-right navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="#" th:href="@{/issues}">전체이슈</a></li>
+          <li><a href="#" th:href="@{/issues/create}">이슈등록</a></li>
+          <li><a href="#" th:href="@{/my-issues}">마이이슈</a></li>
+          <li><a href="#" th:href="@{/notification}">알림</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
     </div>
+  </div>
+  <!--/.nav-collapse -->
+</div>
+<div id="main-visual">
+  no forget은 잊혀져 갈 수 있는 이슈들을 모아<br/>
+  사용자에게 제공해 주는 서비스 입니다.
 </div>
 <div class="container">
-    <div class="hero-unit">
-        <h1>Test</h1>
-        <p>
-            Welcome to the Spring Boot Thymeleaf Application! The time is: <strong th:text="${#temporals.format(now, 'dd/MMM/yyyy HH:mm')}">31/12/2015 15:00</strong>
-        </p>
-        <p>
-            <a href="#" th:href="@{properties}" class="btn btn-large btn-success">System Properties</a>
-        </p>
+  <section>
+    <div class="section-header">
+      <h2>관심등록 컨텐츠</h2>
     </div>
-    <div>
-        <h1>Spring Actuator</h1>
-        <p>
-            Actuator endpoints allow you to monitor and interact with your application.
-            Spring Boot includes a number of built-in endpoints and you can also add your own.
-        </p>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{autoconfig}">autoconfig</a></p>
-                    </td>
-                    <td>
-                        <p>Displays an auto-configuration report showing all auto-configuration candidates and the
-                        reason why they “were” or “were not” applied.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{beans}">beans</a></p>
-                    </td>
-                    <td>
-                        <p>Displays a complete list of all the Spring Beans in your application</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{configprops}">configprops</a></p>
-                    </td>
-                    <td>
-                        <p>Displays a collated list of all <code class="literal">@ConfigurationProperties</code>.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{dump}">dump</a></p>
-                    </td>
-                    <td>
-                        <p>Performs a thread dump.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{env}">env</a></p>
-                    </td>
-                    <td>
-                        <p>Exposes properties from Spring’s <code class="literal">ConfigurableEnvironment</code>.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{health}">health</a></p>
-                    </td>
-                    <td>
-                        <p>Shows application health information (defaulting to a simple “OK” message).</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{info}">info</a></p>
-                    </td>
-                    <td>
-                        <p>Displays arbitrary application info.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{metrics}">metrics</a></p>
-                    </td>
-                    <td>
-                        <p>Shows “metrics” information for the current application.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{mappings}">mappings</a></p>
-                    </td>
-                    <td>
-                        <p>Displays a collated list of all <code class="literal">@RequestMapping</code> paths.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p><a href="#" th:href="@{trace}">trace</a></p>
-                    </td>
-                    <td>
-                        <p>Displays trace information (by
-                            default the last few HTTP requests).</p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="scraps">
+      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
+        <div class="issue-title">
+          남극해 좌초됐던
+          썬스타호 구출완료
+        </div>
+      </a>
+      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
+        <div class="issue-title">
+          남극해 좌초됐던
+          썬스타호 구출완료
+        </div>
+      </a>
+      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
+        <div class="issue-title">
+          남극해 좌초됐던
+          썬스타호 구출완료
+        </div>
+      </a>
+      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
+        <div class="issue-title">
+          남극해 좌초됐던
+          썬스타호 구출완료
+        </div>
+      </a>
+      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
+        <div class="issue-title">
+          남극해 좌초됐던
+          썬스타호 구출완료
+        </div>
+      </a>
     </div>
-    <footer>
-        <div th:replace="fragments/footer :: footer">&copy; 2014 The Static Templates</div>
-    </footer>
+  </section>
+  <section>
+    <div class="section-header">
+      <h2>사이다/고구마 이슈</h2>
+    </div>
+    <div class="hot-issues">
+      <a href="#" class="left-issue hot-issue" style="background-image: url(http://placehold.it/600x200);"></a>
+      <a href="#" class="left-issue hot-issue" style="background-image: url(http://placehold.it/600x200);"></a>
+    </div>
+  </section>
+  <section>
+    <div class="section-header">
+      <h2>최근 업데이트 이슈</h2>
+    </div>
+    <div class="update-issues">
+      <div class="update-issue-row">
+        <a href="#" class="update-issue">
+          <h3>이슈제목</h3>
+
+          <div class="issue-intro">이상득 前의원, 오늘(18일) 첫 재판 (기록내용)</div>
+        </a>
+      </div>
+      <div class="update-issue-row">
+        <a href="#" class="update-issue">
+          <h3>이슈제목</h3>
+
+          <div class="issue-intro">이상득 前의원, 오늘(18일) 첫 재판 (기록내용)</div>
+        </a>
+      </div>
+      <div class="update-issue-row">
+        <a href="#" class="update-issue">
+          <h3>이슈제목</h3>
+
+          <div class="issue-intro">이상득 前의원, 오늘(18일) 첫 재판 (기록내용)</div>
+        </a>
+      </div>
+      <div class="update-issue-row">
+        <a href="#" class="update-issue">
+          <h3>이슈제목</h3>
+
+          <div class="issue-intro">이상득 前의원, 오늘(18일) 첫 재판 (기록내용)</div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="section-header">
+      <h2>최근 등록된 이슈</h2>
+    </div>
+    <div class="recent-issues">
+      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
+      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
+      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
+      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
+      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
+    </div>
+    <div class="text-center">
+      <a href="#" class="btn btn-success btn-lg btn-more">모든 이슈 보기</a>
+    </div>
+  </section>
+  <footer>
+    <div th:replace="fragments/footer :: footer">&copy; 2015 The Static Templates</div>
+  </footer>
 </div>
 </body>
 </html>

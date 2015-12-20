@@ -20,12 +20,6 @@ public class ThymeLeafTestController {
         return "greeting";
     }
 
-	@RequestMapping("/")
-	String index(Model model) {
-		model.addAttribute("now", LocalDateTime.now());
-		return "index";
-	}
-
 	@RequestMapping("properties")
 	@ResponseBody
 	java.util.Properties properties() {
