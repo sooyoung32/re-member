@@ -14,4 +14,6 @@ public class CommentModel {
 	 private String content;
 	 
 	 private Date createdAt;
+	 
+	 private UserModel creator;
 }

@@ -48,7 +48,6 @@ public class IssueEntity extends AbstractAuditable {
 	private List<ActionEntity> actions;
 	
 	@DBRef
-	@Field
 	private List<CommentEntity> comments;
 	
 	private int commentSize;

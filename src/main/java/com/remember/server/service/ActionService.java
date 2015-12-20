@@ -47,8 +47,8 @@ public class ActionService {
 			actions = new ArrayList<ActionEntity>();
 		}
 		actions.add(actionEntity);
+		issueEntity.setActions(actions);
 		issueRepository.save(issueEntity);
-		
 		return issueEntity;
 	}
     
