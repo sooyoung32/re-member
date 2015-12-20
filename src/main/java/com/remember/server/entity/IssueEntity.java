@@ -43,7 +43,10 @@ public class IssueEntity extends AbstractAuditable {
 
 	@DBRef
 	private List<ActionEntity> actions;
-
+	
+	@DBRef
+	private List<CommentEntity> comments;
+	
 	private String imageUrl;
 	
 
