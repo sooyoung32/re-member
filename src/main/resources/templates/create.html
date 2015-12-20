@@ -104,6 +104,9 @@
           }),
           success : function(data) {
             location.href='/issues';
+          },
+          error : function() {
+            submit = false;
           }
         });
       });

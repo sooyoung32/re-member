@@ -1,166 +1,88 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/layout">
 
 <head>
-  <title>Hello Spring Boot!</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-        th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
-        rel="stylesheet" media="screen"/>
-
-  <link href="../static/css/screen.css"
-        th:href="@{/static/css/screen.css}"
-        rel="stylesheet" media="screen"/>
-
-  <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-          th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-
-  <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/js/bootstrap.min.js"
-          th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
-
-  <script src="../static/js/app.js"
-          th:src="@{/static/js/app.js}"></script>
+  <title>no forget</title>
 </head>
 <body>
-<!-- Header -->
-<div th:replace="fragments/header :: header">
-  <div id="header" class="navbar" th:fragment="header">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#" th:href="@{/}"><img class="header-logo" src="../static/images/logo.jpg"
-                                                             th:src="@{/static/images/logo.jpg}"/></a>
-      </div>
-      <div class="navbar-right navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#" th:href="@{/issues}">로그인</a></li>
-          <li><a href="#" th:href="@{/issues/create}">회원가입</a></li>
-        </ul>
-      </div>
-      <form name="search-form" class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search..."/>
-      </form>
-      <div class="navbar-right navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#" th:href="@{/issues}">전체이슈</a></li>
-          <li><a href="#" th:href="@{/issues/create}">이슈등록</a></li>
-          <li><a href="#" th:href="@{/my-issues}">마이이슈</a></li>
-          <li><a href="#" th:href="@{/notification}">알림</a></li>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
-    </div>
-  </div>
-  <!--/.nav-collapse -->
-</div>
 <div id="main-visual">
   no forget은 잊혀져 갈 수 있는 이슈들을 모아<br/>
   사용자에게 제공해 주는 서비스 입니다.
 </div>
-<div class="container">
-  <section>
-    <div class="section-header">
-      <h2>관심등록 컨텐츠</h2>
-    </div>
-    <div class="scraps">
-      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
-        <div class="issue-title">
-          남극해 좌초됐던
-          썬스타호 구출완료
-        </div>
-      </a>
-      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
-        <div class="issue-title">
-          남극해 좌초됐던
-          썬스타호 구출완료
-        </div>
-      </a>
-      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
-        <div class="issue-title">
-          남극해 좌초됐던
-          썬스타호 구출완료
-        </div>
-      </a>
-      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
-        <div class="issue-title">
-          남극해 좌초됐던
-          썬스타호 구출완료
-        </div>
-      </a>
-      <a href="#" class="scrap-issue" style="background-image: url(http://placehold.it/200x256);">
-        <div class="issue-title">
-          남극해 좌초됐던
-          썬스타호 구출완료
-        </div>
-      </a>
-    </div>
-  </section>
-  <section>
-    <div class="section-header">
-      <h2>사이다/고구마 이슈</h2>
-    </div>
-    <div class="hot-issues">
-      <a href="#" class="left-issue hot-issue" style="background-image: url(http://placehold.it/600x200);"></a>
-      <a href="#" class="left-issue hot-issue" style="background-image: url(http://placehold.it/600x200);"></a>
-    </div>
-  </section>
-  <section>
-    <div class="section-header">
-      <h2>최근 업데이트 이슈</h2>
-    </div>
-    <div class="update-issues">
-      <div class="update-issue-row">
-        <a href="#" class="update-issue">
-          <h3>이슈제목</h3>
-
-          <div class="issue-intro">이상득 前의원, 오늘(18일) 첫 재판 (기록내용)</div>
+<div layout:fragment="content">
+  <div class="container">
+    <section>
+      <div class="section-header">
+        <h2>관심등록 컨텐츠</h2>
+      </div>
+      <div class="scraps">
+        <a href="#" class="scrap-issue" style="background-image: url(/static/images/@scrap-issue-1.jpg);">
+          <div class="issue-title">
+            남극해 좌초됐던
+            썬스타호 구출완료
+          </div>
+        </a>
+        <a href="#" class="scrap-issue" style="background-image: url(/static/images/@scrap-issue-2.jpg);">
+          <div class="issue-title">
+            서울시 아파트값상승폭 올들어최저치
+          </div>
+        </a>
+        <a href="#" class="scrap-issue" style="background-image: url(/static/images/@scrap-issue-3.jpg);">
+          <div class="issue-title">
+            진보교육감들 대안교재 공동개발
+          </div>
+        </a>
+        <a href="#" class="scrap-issue" style="background-image: url(/static/images/@scrap-issue-4.jpg);">
+          <div class="issue-title">
+            폭력대신 탬버린 든
+            3차 민중총궐기
+            참가자들
+          </div>
+        </a>
+        <a href="#" class="scrap-issue" style="background-image: url(/static/images/@scrap-issue-5.jpg);">
+          <div class="issue-title">
+            지병 시달린
+            30대 경찰관 실종
+          </div>
         </a>
       </div>
-      <div class="update-issue-row">
-        <a href="#" class="update-issue">
-          <h3>이슈제목</h3>
-
-          <div class="issue-intro">이상득 前의원, 오늘(18일) 첫 재판 (기록내용)</div>
-        </a>
+    </section>
+    <section>
+      <div class="section-header">
+        <h2>사이다/고구마 이슈</h2>
       </div>
-      <div class="update-issue-row">
-        <a href="#" class="update-issue">
-          <h3>이슈제목</h3>
-
-          <div class="issue-intro">이상득 前의원, 오늘(18일) 첫 재판 (기록내용)</div>
-        </a>
+      <div class="hot-issues">
+        <img src="../static/images/hot-issue.jpg" th:src="@{/static/images/hot-issue.jpg}"/>
       </div>
-      <div class="update-issue-row">
-        <a href="#" class="update-issue">
-          <h3>이슈제목</h3>
-
-          <div class="issue-intro">이상득 前의원, 오늘(18일) 첫 재판 (기록내용)</div>
-        </a>
+    </section>
+    <section>
+      <div class="section-header">
+        <h2>최근 업데이트 이슈</h2>
       </div>
-    </div>
-  </section>
-  <section>
-    <div class="section-header">
-      <h2>최근 등록된 이슈</h2>
-    </div>
-    <div class="recent-issues">
-      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
-      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
-      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
-      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
-      <a href="#" class="recent-issue" style="background-image: url(http://placehold.it/220x200);"></a>
-    </div>
-    <div class="text-center">
-      <a href="#" class="btn btn-success btn-lg btn-more">모든 이슈 보기</a>
-    </div>
-  </section>
-  <footer>
-    <div th:replace="fragments/footer :: footer">&copy; 2015 The Static Templates</div>
-  </footer>
+      <div class="update-issues">
+        <div class="update-issue-row" th:each="issue : ${updateIssueArticles}">
+          <a href="issue.html" th:href="@{'/issue/'+${issue.id}}" class="update-issue">
+            <h3 th:text="${issue.title}">이슈 제목</h3>
+
+            <div class="issue-intro" th:text="${issue.records[0].title}">이상득 前의원, 오늘(18일) 첫 재판 (기록내용)</div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="section-header">
+        <h2>최근 등록된 이슈</h2>
+      </div>
+      <div class="recent-issues">
+        <a href="#" class="recent-issue" th:each="issue : ${recentIssueArticles}" th:style="|background-image: url(${issue.imageUrl});|"></a>
+      </div>
+      <div class="text-center">
+        <a href="/issues" class="btn btn-success btn-lg btn-more">모든 이슈 보기</a>
+      </div>
+    </section>
+  </div>
 </div>
 </body>
 </html>

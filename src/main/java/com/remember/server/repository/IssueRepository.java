@@ -17,7 +17,7 @@ import java.util.List;
 @Repository
 public interface IssueRepository extends MongoRepository<IssueEntity, ObjectId> {
 
-    List<IssueEntity> findTop3ByOrderByCreatedAtDesc();
-    List<IssueEntity> findTop3ByOrderByModifiedAtDesc();
+    List<IssueEntity> findTop5ByOrderByCreatedAtDesc();
+    List<IssueEntity> findTop5ByOrderByModifiedAtDesc();
     List<IssueEntity> findByTitleContaining(String title, Pageable pageable);
 }

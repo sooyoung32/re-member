@@ -64,12 +64,12 @@ public class IssueService {
     }
 
     public List<IssueEntity> getRecentIssueArticles() {
-        List<IssueEntity> issues = issueRepository.findTop3ByOrderByCreatedAtDesc();
+        List<IssueEntity> issues = issueRepository.findTop5ByOrderByCreatedAtDesc();
         return issues;
     }
     
     public List<IssueEntity> getUpdateIssueArticles() {
-        List<IssueEntity> issues = issueRepository.findTop3ByOrderByModifiedAtDesc();
+        List<IssueEntity> issues = issueRepository.findTop5ByOrderByModifiedAtDesc();
         return issues;
     }
 
