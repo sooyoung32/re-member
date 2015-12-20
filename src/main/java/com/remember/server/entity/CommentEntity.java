@@ -9,6 +9,7 @@ import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Document
 public class CommentEntity extends AbstractAuditable {
 	

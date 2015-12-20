@@ -1,9 +1,12 @@
 package com.remember.server.controller;
 
+import com.remember.server.entity.IssueEntity;
 import com.remember.server.entity.UserEntity;
 import com.remember.server.model.CommentModel;
+import com.remember.server.model.DetailIssueModel;
 import com.remember.server.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,12 +32,20 @@ public class CommentController {
             value = "/v1/comment/{issueId}"
     )
     @ResponseBody
-    public CommentModel addComment(
+    public DetailIssueModel addComment(
             @Valid @RequestBody CommentModel commentModel,
             @RequestHeader("AccessToken") String accessToken,
             @ApiIgnore UserEntity userEntity,
             @PathVariable("issueId") String issueId
     ) {
-        return null;
+        ObjectId issueOid = new ObjectId(issueId);
+
+        IssueEntity issueEntity = commentService.createNewComment(issueOid, commentModel, userEntity);
+
+        return modelMapper.map(
+                issueEntity,
+                DetailIssueModel.class
+        );
+
     }
 }
