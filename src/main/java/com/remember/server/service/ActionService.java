@@ -17,7 +17,7 @@ import com.remember.server.entity.ActionEntity;
 import com.remember.server.entity.IssueEntity;
 import com.remember.server.entity.RecordEntity;
 import com.remember.server.entity.UserEntity;
-import com.remember.server.model.ActionModel;
+import com.remember.server.model.NewActionModel;
 import com.remember.server.model.NewManualRecordModel;
 import com.remember.server.model.SessionModel;
 import com.remember.server.repository.ActionRepository;
@@ -36,7 +36,7 @@ public class ActionService {
     @Autowired
     private ModelMapper modelMapper;
 
-	public IssueEntity createNewAction(ObjectId issueOid, ActionModel actionModel) {
+	public IssueEntity createNewAction(ObjectId issueOid, NewActionModel actionModel) {
 		
 		ActionEntity actionEntity = modelMapper.map(actionModel, ActionEntity.class);
 		actionRepository.save(actionEntity);

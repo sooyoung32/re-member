@@ -20,7 +20,7 @@ import springfox.documentation.annotations.ApiIgnore;
 import com.remember.server.entity.ActionEntity;
 import com.remember.server.entity.IssueEntity;
 import com.remember.server.entity.UserEntity;
-import com.remember.server.model.ActionModel;
+import com.remember.server.model.NewActionModel;
 import com.remember.server.model.NewIssueModel;
 import com.remember.server.model.NewManualRecordModel;
 import com.remember.server.service.ActionService;
@@ -42,7 +42,7 @@ public class ActionController {
 			)
 	@ResponseBody
 	public NewIssueModel postNewAction(
-			@Valid @RequestBody ActionModel actionModel,
+			@Valid @RequestBody NewActionModel actionModel,
 			@RequestHeader("AccessToken") String accessToken,
 			@ApiIgnore UserEntity userEntity,
 			@PathVariable("issueId") String issueId
