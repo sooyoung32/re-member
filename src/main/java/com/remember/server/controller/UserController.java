@@ -49,6 +49,7 @@ public class UserController {
 		newUserEntity.setJoinAt(new Date());
 		newUserEntity.setEmail(joinModel.getEmail());
 		newUserEntity.setEncryptedPassword(SCRYPT.encrypt(joinModel.getPassword()));
+		newUserEntity.setName(joinModel.getName());
 		userRepository.save(newUserEntity);
 
 		SessionModel sessionModel = new SessionModel(
