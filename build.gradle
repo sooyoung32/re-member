@@ -65,8 +65,9 @@ dependencies {
     compile('org.jsoup:jsoup:1.8.3')
 
     compile 'org.webjars:jquery:2.1.4'
-
     compile 'org.webjars:bootstrap:3.3.6'
+    compile 'org.webjars:handlebars:4.0.2'
+
 }
 
 

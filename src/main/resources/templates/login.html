@@ -1,74 +1,52 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="fragments/layout">
 <head>
   <title>로그인</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/css/bootstrap.min.css"
-        th:href="@{/webjars/bootstrap/3.3.6/css/bootstrap.min.css}"
-        rel="stylesheet" media="screen" />
-
-  <link href="../static/css/screen.css"
-        th:href="@{/static/css/screen.css}"
-        rel="stylesheet" media="screen" />
-
-  <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-          th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-
-  <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.6/js/bootstrap.min.js"
-          th:src="@{/webjars/bootstrap/3.3.6/js/bootstrap.min.js}"></script>
 </head>
 <body>
-<!-- Header -->
-<div th:replace="fragments/header :: header">
-  <div id="header" class="navbar" th:fragment="header">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#" th:href="@{/}"><img class="header-logo" src="../static/images/logo.jpg" th:src="@{/static/images/logo.jpg}" /></a>
-      </div>
-      <form name="search-form" class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Search..." />
-      </form>
-      <div class="navbar-right navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li><a href="#" th:href="@{/issues}">전체이슈</a></li>
-          <li><a href="#" th:href="@{/issues/create}">이슈등록</a></li>
-          <li><a href="#" th:href="@{/my-issues}">마이이슈</a></li>
-          <li><a href="#" th:href="@{/notification}">알림</a></li>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
-    </div>
-  </div>
-  <!--/.nav-collapse -->
-</div>
-<div class="container">
-  <section>
-
-    <form class="form-signin">
+<div layout:fragment="content">
+  <div class="container">
+    <form id="login-form" class="form-signin">
       <h2 class="form-signin-heading">로그인</h2>
-      <div class="form-group">
+      <!--<div class="form-group">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Facebook으로 로그인</button>
+      </div>-->
+      <div class="form-group">
+        <label for="input-email" class="sr-only">Email address</label>
+        <input type="email" id="input-email" class="form-control input-lg" placeholder="Email address" required="required" autofocus="autofocus" />
       </div>
       <div class="form-group">
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control input-lg" placeholder="Email address" required autofocus>
-      </div>
-      <div class="form-group">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control input-lg" placeholder="Password" required>
+        <label for="input-password" class="sr-only">Password</label>
+        <input type="password" id="input-password" class="form-control input-lg" placeholder="Password" required="required" />
       </div>
       <button class="btn btn-lg btn-success btn-block" type="submit">로그인</button>
     </form>
-  </section>
-  <footer>
-    <div th:replace="fragments/footer :: footer">&copy; 2015 The Static Templates</div>
-  </footer>
+  </div>
+
+  <script th:inline="javascript">
+    $(function() {
+      $('#login-form').submit(function(e) {
+
+        var email = $('#input-email').val();
+        var password = $('#input-password').val();
+
+        $.ajax({
+          url : apiPrefix+'/user/session',
+          type: 'post',
+          dataType: 'json',
+          contentType: "application/json; charset=utf-8",
+          data: JSON.stringify({email: email, password: password}),
+          success : function() {
+            location.href='/';
+          }
+        });
+
+        e.preventDefault();
+      });
+    });
+  </script>
 </div>
 </body>
 </html>

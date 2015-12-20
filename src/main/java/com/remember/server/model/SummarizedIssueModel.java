@@ -25,6 +25,8 @@ public class SummarizedIssueModel {
 
 	private long subscribeCount;
 
+    private long recordSize;
+
     private String imageUrl;
 
 	private Date createdAt;
